@@ -1,0 +1,8 @@
+
+
+- use store only in the upper level components
+    - or in a way only use store in screen components
+        - a screen is composed of other components representing the screen
+
+- does change in state affects any other thing in the app
+    - if not let it remain encapsulated in the component
