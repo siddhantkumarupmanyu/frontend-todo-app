@@ -9,3 +9,9 @@ export function Input({value, onChange}) {
             value={value}/>
     )
 }
+
+export function Button({text, onClick}) {
+    return (
+        <button className="button" type="button" onClick={onClick}>{text}</button>
+    )
+}
