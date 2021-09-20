@@ -1,23 +1,20 @@
 import './AddItem.css'
-import {Button, Input} from "./BaseComponents";
+import {Button, CancelIconButton, Input} from "./BaseComponents";
 
 export function AddItem({value, onChange, onSave, onCancel}) {
 
     function setFocusToInputAndCallOnCancel() {
-        const input = document.querySelector(".add-item > input")
+        const input = document.querySelector(".add-item > .input")
         input.focus()
         onCancel()
     }
 
-    const cancelIconVisibility = value === "" ? "hidden" : "visible"
+    const cancelIconVisibility = value !== ""
 
     return (
         <div className="add-item">
             <Input value={value} onChange={onChange}/>
-            <span tabIndex="0" className="material-icons cancel"
-                  style={{visibility: cancelIconVisibility}}
-                  onClick={setFocusToInputAndCallOnCancel}>cancel</span>
-            {/*<button type="button" onClick={onSave}>Add</button>*/}
+            <CancelIconButton isVisible={cancelIconVisibility} onClick={setFocusToInputAndCallOnCancel}/>
             <Button text="Add" onClick={onSave}/>
         </div>
     )

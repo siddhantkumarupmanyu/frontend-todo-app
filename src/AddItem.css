@@ -5,8 +5,6 @@ onSurface: #000000
 */
 
 /*
-// todo: refactor the common styles from here
-// most the button style
 // todo: add color support
 // todo: add typography support
 */
@@ -26,22 +24,7 @@ onSurface: #000000
     margin-left: 8px;
 }
 
-.add-item > .cancel {
-    border: none;
-    background: white;
-    color: rgba(0, 0, 0, 0.54);
-    height: 40px;
-    width: 40px;
-    padding: 8px;
-    cursor: default;
-    user-select: none;
-}
-
-.add-item > .cancel:hover {
-    color: rgba(0, 0, 0, 0.87);
-}
-
-.add-item > button {
+.add-item > .button {
     align-self: center;
     margin-right: 4px;
 }

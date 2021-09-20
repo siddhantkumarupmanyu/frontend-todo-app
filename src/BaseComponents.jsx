@@ -15,3 +15,17 @@ export function Button({text, onClick}) {
         <button className="button" type="button" onClick={onClick}>{text}</button>
     )
 }
+
+// i con refactor it into IconButton
+// or MaterialIconButton
+// But for now, YAGNI
+export function CancelIconButton({isVisible, onClick}) {
+
+    const visibilityValue = isVisible ? "visible" : "hidden"
+
+    return (
+        <span tabIndex="0" className="material-icons cancel"
+              style={{visibility: visibilityValue}}
+              onClick={onClick}>cancel</span>
+    )
+}
