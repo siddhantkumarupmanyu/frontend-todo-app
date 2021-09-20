@@ -1,5 +1,7 @@
 import {List} from "./List";
 import {useReducer} from "react";
+import './App.css'
+import {AddItem} from "./AddItem";
 
 const initialState = {
     items: ["initial"],
@@ -9,7 +11,7 @@ const initialState = {
 
 function reducer(state, action) {
     switch (action.type) {
-        case "edit-item-input-value-change":
+        case "value-change":
             return {
                 ...state,
                 inputText: action.value
@@ -50,10 +52,10 @@ export default function App() {
     const [appState, appDispatch] = useReducer(reducer, initialState)
 
     return (
-        <div>
-            <EditItem
+        <div className="app">
+            <AddItem
                 value={appState.inputText}
-                onChange={(e) => appDispatch({type: "edit-item-input-value-change", value: e.target.value})}
+                onChange={(e) => appDispatch({type: "value-change", value: e.target.value})}
                 onSave={() => appDispatch({type: "save"})}
                 onCancel={() => appDispatch({type: "cancel"})}/>
             <List
@@ -86,43 +88,3 @@ function Divider() {
         </li>
     )
 }
-
-function EditItem({value, onChange, onSave, onCancel}) {
-    return (
-        <div>
-            <input type="text" onChange={onChange} value={value}/>
-            <button type="button" onClick={onSave}>Save</button>
-            <button type="button" onClick={onCancel}>Cancel</button>
-        </div>
-    )
-}
-
-
-// won't work since react calculates/renders based on state
-// export default class App extends Component {
-//
-//     constructor(props) {
-//         super(props);
-//
-//         this.todoViewModel = new TodoViewModel()
-//     }
-//
-//     addItem = (inputText) => {
-//         this.todoViewModel.addItem(inputText)
-//     }
-//
-//     render() {
-//         return (
-//             <div>
-//                 <AddItem add={this.addItem}/>
-//                 <List
-//                     items={this.todoViewModel.items}
-//                     ListItem={Item}
-//                     listItemProp={(item) => ({key: item, text: item})}
-//                     Divider={Divider}/>
-//             </div>
-//         )
-//     }
-//
-//
-// }

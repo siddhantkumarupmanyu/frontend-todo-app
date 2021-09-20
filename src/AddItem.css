@@ -1,0 +1,56 @@
+/*
+primaryColor: darkgreen
+surface: #ffffff
+onSurface: #000000
+*/
+
+.add-item {
+    display: flex;
+    border: solid 2px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+}
+
+.add-item:focus-within {
+    border-color: darkgreen;
+}
+
+.add-item > div {
+    flex-grow: 1;
+    display: flex;
+}
+
+.add-item > div > input {
+    flex-grow: 1;
+    outline: none;
+    border: none;
+    margin-left: 8px;
+    font-size: 16px;
+}
+
+.add-item > div > .cancel {
+    border: none;
+    background: white;
+    color: rgba(0, 0, 0, 0.54);
+    height: 40px;
+    width: 40px;
+    padding: 8px;
+    cursor: default;
+    user-select: none;
+}
+
+.add-item > div > .cancel:hover {
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.add-item > button {
+    align-self: center;
+    margin-right: 4px;
+    padding: 6px;
+
+    border-radius: 4px;
+    background: darkgreen;
+    border: solid 1px green;
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+}
