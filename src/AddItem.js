@@ -3,7 +3,7 @@ import './AddItem.css'
 export function AddItem({value, onChange, onSave, onCancel}) {
 
     function setFocusToInputAndCallOnCancel() {
-        const input = document.querySelector(".add-item > div > input")
+        const input = document.querySelector(".add-item > input")
         input.focus()
         onCancel()
     }
@@ -12,12 +12,10 @@ export function AddItem({value, onChange, onSave, onCancel}) {
 
     return (
         <div className="add-item">
-            <div>
-                <input type="text" onChange={onChange} value={value}/>
-                <span tabIndex="0" className="material-icons cancel"
-                      style={{visibility: cancelIconVisibility}}
-                      onClick={setFocusToInputAndCallOnCancel}>cancel</span>
-            </div>
+            <input type="text" onChange={onChange} value={value}/>
+            <span tabIndex="0" className="material-icons cancel"
+                  style={{visibility: cancelIconVisibility}}
+                  onClick={setFocusToInputAndCallOnCancel}>cancel</span>
             <button type="button" onClick={onSave}>Add</button>
         </div>
     )
