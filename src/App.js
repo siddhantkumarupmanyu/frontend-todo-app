@@ -1,6 +1,6 @@
 import {List} from "./List";
 import {useReducer} from "react";
-import './App.css'
+import './App.scss'
 import {AddItem} from "./AddItem";
 
 const initialState = {

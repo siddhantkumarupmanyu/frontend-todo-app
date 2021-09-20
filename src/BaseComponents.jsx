@@ -1,4 +1,4 @@
-import './BaseComponents.css'
+import './BaseComponents.scss'
 
 export function Input({value, onChange}) {
     return (
