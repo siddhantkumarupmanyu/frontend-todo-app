@@ -1,4 +1,5 @@
 import './AddItem.css'
+import {Input} from "./BaseComponents";
 
 export function AddItem({value, onChange, onSave, onCancel}) {
 
@@ -12,7 +13,7 @@ export function AddItem({value, onChange, onSave, onCancel}) {
 
     return (
         <div className="add-item">
-            <input type="text" onChange={onChange} value={value}/>
+            <Input value={value} onChange={onChange}/>
             <span tabIndex="0" className="material-icons cancel"
                   style={{visibility: cancelIconVisibility}}
                   onClick={setFocusToInputAndCallOnCancel}>cancel</span>
