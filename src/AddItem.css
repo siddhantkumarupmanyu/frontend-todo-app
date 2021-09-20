@@ -11,7 +11,7 @@ onSurface: #000000
 
 .add-item {
     display: flex;
-    border: solid 2px rgba(0, 0, 0, 0.12);  /* todo: fix this */
+    border: solid 2px rgba(var(--color-onSurface-rgb), 0.12);
     border-radius: 8px;
 }
 

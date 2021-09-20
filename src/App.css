@@ -13,4 +13,7 @@ app theming
 
     --color-surface: white;
     --color-onSurface: black;
+
+    /* rbga does not work with plain colors  */
+    --color-onSurface-rgb: 0, 0, 0;
 }
