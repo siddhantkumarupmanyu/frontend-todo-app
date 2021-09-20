@@ -11,12 +11,12 @@ onSurface: #000000
 
 .add-item {
     display: flex;
-    border: solid 2px rgba(0, 0, 0, 0.12);
+    border: solid 2px rgba(0, 0, 0, 0.12);  /* todo: fix this */
     border-radius: 8px;
 }
 
 .add-item:focus-within {
-    border-color: darkgreen;
+    border-color: var(--color-primary);
 }
 
 .add-item > .input {

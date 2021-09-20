@@ -3,3 +3,14 @@
     border-top: solid 4px black;
     padding: 16px;
 }
+
+/*
+app theming
+*/
+:root {
+    --color-primary: darkgreen;
+    --color-onPrimary: white;
+
+    --color-surface: white;
+    --color-onSurface: black;
+}

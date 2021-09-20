@@ -1,25 +1,24 @@
 
-
-.input{
+.input {
     outline: none;
     border: none;
     font-size: 16px;
 }
 
-.button{
+.button {
     border-radius: 4px;
     padding: 6px 8px;
-    background: darkgreen;
-    border: solid 1px darkgreen;
-    color: white;
+    background: var(--color-primary);
+    border: solid 1px var(--color-primary);
+    color: var(--color-onPrimary);
     text-transform: uppercase;
     font-size: 15px;
 }
 
-.cancel{
+.cancel {
     border: none;
-    background: white;
-    color: rgba(0, 0, 0, 0.54);
+    background: var(--color-surface);
+    color: rgba(0, 0, 0, 0.54); /* todo */
     height: 40px;
     width: 40px;
     padding: 8px;
@@ -28,5 +27,5 @@
 }
 
 .cancel:hover {
-    color: rgba(0, 0, 0, 0.87);
+    color: rgba(0, 0, 0, 0.87); /* todo */
 }
