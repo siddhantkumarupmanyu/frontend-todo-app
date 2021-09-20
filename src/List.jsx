@@ -1,21 +1,21 @@
 export function List({items, ListItem, listItemProp, Divider}) {
 
-    const listItemRendered = []
+    const renderedList = []
 
     items.forEach((item, index) => {
-        listItemRendered.push(<ListItem {...listItemProp(item, index)} />)
+        renderedList.push(<ListItem {...listItemProp(item, index)} />)
         if (Divider) {
-            listItemRendered.push(<Divider key={`divider-${index}`}/>)
+            renderedList.push(<Divider key={`divider-${index}`}/>)
         }
     })
 
     if (Divider) {
-        listItemRendered.pop()
+        renderedList.pop()
     }
 
     return (
         <ul>
-            {listItemRendered}
+            {renderedList}
         </ul>
     );
 }
