@@ -1,4 +1,4 @@
-import './AddItem.css'
+import './AddItem.scss'
 import {Button, CancelIconButton, Input} from "./BaseComponents";
 
 export function AddItem({value, onChange, onSave, onCancel}) {

@@ -19,7 +19,7 @@
 .cancel {
   border: none;
   background: var(--color-surface);
-  color: rgba(var(--color-onSurface-rgb), 0.54);
+  color: rgba(var(--rgb-onSurface), 0.54);
   height: 40px;
   width: 40px;
   padding: 8px;
@@ -28,5 +28,5 @@
 }
 
 .cancel:hover {
-  color: rgba(var(--color-onSurface-rgb), 0.87);
+  color: rgba(var(--rgb-onSurface), 0.87);
 }
