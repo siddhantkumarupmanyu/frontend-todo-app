@@ -1,32 +1,32 @@
-@use './_types.scss';
+@use 'font';
 
 .input {
-    outline: none;
-    border: none;
-    font-size: 16px;
+  outline: none;
+  border: none;
+  font-size: 16px;
 }
 
 .button {
-    border-radius: 4px;
-    padding: 6px 8px;
-    background: var(--color-primary);
-    border: solid 1px var(--color-primary);
-    color: var(--color-onPrimary);
-    text-transform: uppercase;
-    @include types.h1();
+  border-radius: 4px;
+  padding: 6px 8px;
+  background: var(--color-primary);
+  border: solid 1px var(--color-primary);
+  color: var(--color-onPrimary);
+  text-transform: uppercase;
+  @include font.button();
 }
 
 .cancel {
-    border: none;
-    background: var(--color-surface);
-    color: rgba(var(--color-onSurface-rgb), 0.54);
-    height: 40px;
-    width: 40px;
-    padding: 8px;
-    cursor: default;
-    user-select: none;
+  border: none;
+  background: var(--color-surface);
+  color: rgba(var(--color-onSurface-rgb), 0.54);
+  height: 40px;
+  width: 40px;
+  padding: 8px;
+  cursor: default;
+  user-select: none;
 }
 
 .cancel:hover {
-    color: rgba(var(--color-onSurface-rgb), 0.87);
+  color: rgba(var(--color-onSurface-rgb), 0.87);
 }

@@ -1,0 +1,60 @@
+// https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#common_weight_name_mapping
+// https://material.io/design/typography/the-type-system.html#type-scale
+
+@mixin h1 {
+  @include createTypeScale(300, 96px, -1.5px)
+}
+
+@mixin h2 {
+  @include createTypeScale(300, 60px, -0.5px)
+}
+
+@mixin h3 {
+  @include createTypeScale(400, 48px, 0px)
+}
+
+@mixin h4 {
+  @include createTypeScale(400, 34px, 0.25px)
+}
+
+@mixin h5 {
+  @include createTypeScale(400, 24px, 0px)
+}
+
+@mixin h6 {
+  @include createTypeScale(500, 20px, 0.15px)
+}
+
+@mixin subtitle1 {
+  @include createTypeScale(400, 16px, 0.15px)
+}
+
+@mixin subtitle2 {
+  @include createTypeScale(500, 14px, 0.1px)
+}
+
+@mixin body1 {
+  @include createTypeScale(400, 16px, 0.5px)
+}
+
+@mixin body2 {
+  @include createTypeScale(400, 14px, 0.25px)
+}
+
+@mixin button {
+  @include createTypeScale(500, 14px, 1.25px)
+}
+
+@mixin caption {
+  @include createTypeScale(500, 12px, 0.4px)
+}
+
+@mixin overline {
+  @include createTypeScale(500, 10px, 1.5px)
+}
+
+@mixin createTypeScale($fontWeight, $fontSize, $letterSpacing) {
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+  letter-spacing: $letterSpacing;
+}
