@@ -1,6 +1,6 @@
 @use 'font';
 
-.input {
+.text-input {
   outline: none;
   border: none;
   @include font.body1();
@@ -29,4 +29,10 @@
 
 .cancel:hover {
   color: rgba(var(--rgb-onSurface), 0.87);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }

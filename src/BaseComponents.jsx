@@ -1,9 +1,9 @@
 import './BaseComponents.scss'
 
-export function Input({value, onChange}) {
+export function TextInput({value, onChange}) {
     return (
         <input
-            className="input"
+            className="text-input"
             type="text"
             onChange={onChange}
             value={value}/>
@@ -28,4 +28,26 @@ export function CancelIconButton({isVisible, onClick}) {
               style={{visibility: visibilityValue}}
               onClick={onClick}>cancel</span>
     )
+}
+
+export function List({items, ListItem, listItemProp, Divider}) {
+
+    const renderedList = []
+
+    items.forEach((item, index) => {
+        renderedList.push(<ListItem {...listItemProp(item, index)} />)
+        if (Divider) {
+            renderedList.push(<Divider key={`divider-${index}`}/>)
+        }
+    })
+
+    if (Divider) {
+        renderedList.pop()
+    }
+
+    return (
+        <ul className="list">
+            {renderedList}
+        </ul>
+    );
 }

@@ -1,7 +1,7 @@
-import {List} from "./List";
 import {useEffect, useReducer, useState} from "react";
 import './App.scss'
 import {AddItem} from "./AddItem";
+import {TodoList} from "./TodoList";
 
 const initialState = {
     items: ["initial"],
@@ -68,35 +68,9 @@ export default function App() {
                 onChange={(e) => appDispatch({type: "value-change", value: e.target.value})}
                 onSave={() => appDispatch({type: "save"})}
                 onCancel={() => appDispatch({type: "cancel"})}/>
-            <List
-                items={appState.items}
-                ListItem={Item}
-                listItemProp={(item, index) => (
-                    {
-                        key: item,
-                        text: item,
-                        onClick: () => appDispatch({type: "edit-item", editItemIndex: index})
-                    }
-                )}
-                Divider={Divider}/>
+            <TodoList/>
         </div>
     );
-}
-
-function Item({text, onClick}) {
-    return (
-        <li onClick={onClick}>
-            {text}
-        </li>
-    );
-}
-
-function Divider() {
-    return (
-        <li>
-            <span>||||</span>
-        </li>
-    )
 }
 
 function setRGBVars() {

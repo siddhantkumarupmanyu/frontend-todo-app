@@ -1,10 +1,10 @@
 import './AddItem.scss'
-import {Button, CancelIconButton, Input} from "./BaseComponents";
+import {Button, CancelIconButton, TextInput} from "./BaseComponents";
 
 export function AddItem({value, onChange, onSave, onCancel}) {
 
     function setFocusToInputAndCallOnCancel() {
-        const input = document.querySelector(".add-item > .input")
+        const input = document.querySelector(".add-item > .text-input")
         input.focus()
         onCancel()
     }
@@ -13,7 +13,7 @@ export function AddItem({value, onChange, onSave, onCancel}) {
 
     return (
         <div className="add-item">
-            <Input value={value} onChange={onChange}/>
+            <TextInput value={value} onChange={onChange}/>
             <CancelIconButton isVisible={cancelIconVisibility} onClick={setFocusToInputAndCallOnCancel}/>
             <Button text="Add" onClick={onSave}/>
         </div>
