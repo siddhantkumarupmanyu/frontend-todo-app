@@ -52,8 +52,8 @@ export function List({items, ListItem, listItemProp, Divider}) {
     );
 }
 
-export function Checkbox({onClick}) {
+export function Checkbox({isChecked, onClick}) {
     return (
-        <input className="checkbox" type="checkbox" onClick={onClick}/>
+        <input className="checkbox" type="checkbox" checked={isChecked} onChange={onClick}/>
     )
 }
