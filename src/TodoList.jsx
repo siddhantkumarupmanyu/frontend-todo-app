@@ -1,27 +1,17 @@
 import {Checkbox, List} from "./BaseComponents";
 import './TodoList.scss';
-import TodoItem from "./TodoItem";
-import {useState} from "react";
 
-export function TodoList() {
-
-    const [items, setItems] = useState([
-        new TodoItem("note1", false),
-        new TodoItem("note2", true)
-    ])
+export function TodoList({todoItems, onItemClick}) {
 
     return (
         <div className="todo-list">
             <List
-                items={items}
+                items={todoItems}
                 ListItem={TodoListItem}
                 listItemProp={(todoItem, index) => ({
                     key: todoItem.getNote(),
                     todoItem: todoItem,
-                    onCheck: () => {
-                        items[index].setDone(!items[index].isDone())
-                        setItems([...items])
-                    }
+                    onCheck: () => onItemClick(todoItem, index)
                 })}
             />
         </div>

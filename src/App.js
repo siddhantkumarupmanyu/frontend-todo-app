@@ -2,45 +2,45 @@ import {useEffect, useReducer, useState} from "react";
 import './App.scss'
 import {AddItem} from "./AddItem";
 import {TodoList} from "./TodoList";
+import TodoItem from "./TodoItem";
 
 const initialState = {
-    items: ["initial"],
+    todoItems: [
+        new TodoItem("note1", false),
+        new TodoItem("note2", true)
+    ],
     inputText: "",
-    editItemIndex: -1
 }
 
 function reducer(state, action) {
     switch (action.type) {
-        case "value-change":
+        case "input-text-value-change":
             return {
                 ...state,
                 inputText: action.value
             }
-        case "edit-item": {
+        case "add-item":
             return {
                 ...state,
-                editItemIndex: action.editItemIndex,
-                inputText: state.items[action.editItemIndex]
-            }
-        }
-        case "save":
-            if (state.editItemIndex === -1) {
-                return {
-                    ...state,
-                    items: state.items.concat([state.inputText]),
-                    inputText: ""
-                }
-            }
-            state.items[state.editItemIndex] = state.inputText
-            return {
-                ...state,
+                // todo
+                todoItems: state.todoItems.concat([state.inputText]),
                 inputText: ""
             }
         case "cancel":
             return {
                 ...state,
-                editItemIndex: -1,
                 inputText: ""
+            }
+        case "item-click":
+            const newArray = Array.from(state.todoItems)
+            newArray[action.index] = new TodoItem(newArray[action.index].getNote(), !newArray[action.index].isDone())
+            // state.todoItems[action.index] = new TodoItem(state.todoItems[action.index].getNote(), !state.todoItems[action.index].isDone())
+            // newArray[action.index].setDone(!newArray[action.index].isDone())
+            // console.log(newArray)
+            return {
+                ...state,
+                // todoItems: [...state.todoItems]
+                todoItems: newArray
             }
         default:
             throw new Error()
@@ -65,14 +65,21 @@ export default function App() {
         <div className="app">
             <AddItem
                 value={appState.inputText}
-                onChange={(e) => appDispatch({type: "value-change", value: e.target.value})}
-                onSave={() => appDispatch({type: "save"})}
+                onChange={(e) => appDispatch({type: "input-text-value-change", value: e.target.value})}
+                onSave={() => appDispatch({type: "add-item"})}
                 onCancel={() => appDispatch({type: "cancel"})}/>
-            <TodoList/>
+            <TodoList todoItems={appState.todoItems}
+                      onItemClick={(todoItem, index) => appDispatch({
+                          type: "item-click",
+                          todoItem: todoItem,
+                          index: index
+                      })}/>
         </div>
     );
 }
 
+
+// util
 function setRGBVars() {
     const colorVars = getAllCssVars().filter((value) => (value.startsWith("--color")))
 
