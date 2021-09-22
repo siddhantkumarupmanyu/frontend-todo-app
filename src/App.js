@@ -22,8 +22,7 @@ function reducer(state, action) {
         case "add-item":
             return {
                 ...state,
-                // todo
-                todoItems: state.todoItems.concat([state.inputText]),
+                todoItems: state.todoItems.concat([new TodoItem(state.inputText, false)]),
                 inputText: ""
             }
         case "cancel":
