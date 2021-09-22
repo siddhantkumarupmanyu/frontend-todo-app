@@ -20,8 +20,4 @@ export default class TodoItem {
         return this.#note
     }
 
-    setDone(done) {
-        this.#done = done
-    }
-
 }

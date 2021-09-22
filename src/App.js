@@ -34,12 +34,8 @@ function reducer(state, action) {
         case "item-click":
             const newArray = Array.from(state.todoItems)
             newArray[action.index] = new TodoItem(newArray[action.index].getNote(), !newArray[action.index].isDone())
-            // state.todoItems[action.index] = new TodoItem(state.todoItems[action.index].getNote(), !state.todoItems[action.index].isDone())
-            // newArray[action.index].setDone(!newArray[action.index].isDone())
-            // console.log(newArray)
             return {
                 ...state,
-                // todoItems: [...state.todoItems]
                 todoItems: newArray
             }
         default:
