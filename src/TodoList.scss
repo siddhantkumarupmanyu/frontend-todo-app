@@ -4,7 +4,7 @@
   margin-top: 8px;
 }
 
-// name of the css class is same as name of the component
+// name of the css class is same as that of the component
 .todo-list > .list {
   display: flex;
   flex-direction: column;
@@ -26,12 +26,3 @@
 .todo-item > span {
   flex-grow: 1;
 }
-
-.todo-item > input[type=checkbox] {
-  width: 22px;
-  height: 22px;
-}
-
-// TODO:
-// create new checkbox component
-// rename Input component in base component to InputText

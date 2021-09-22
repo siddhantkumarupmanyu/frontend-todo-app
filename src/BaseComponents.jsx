@@ -51,3 +51,9 @@ export function List({items, ListItem, listItemProp, Divider}) {
         </ul>
     );
 }
+
+export function Checkbox({onClick}) {
+    return (
+        <input className="checkbox" type="checkbox" onClick={onClick}/>
+    )
+}

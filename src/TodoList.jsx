@@ -1,4 +1,4 @@
-import {List} from "./BaseComponents";
+import {Checkbox, List} from "./BaseComponents";
 import './TodoList.scss';
 
 export function TodoList() {
@@ -24,7 +24,7 @@ function TodoItem({text, onCheck}) {
     return (
         <li className="todo-item">
             <span>{text}</span>
-            <input type="checkbox" onClick={onCheck}/>
+            <Checkbox/>
         </li>
     );
 }
