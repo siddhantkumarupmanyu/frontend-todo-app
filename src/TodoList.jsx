@@ -19,7 +19,7 @@ export function TodoList() {
                     key: todoItem.getNote(),
                     todoItem: todoItem,
                     onCheck: () => {
-                        items[index].setIsDone(!items[index].getIsDone())
+                        items[index].setDone(!items[index].isDone())
                         setItems([...items])
                     }
                 })}
@@ -29,10 +29,16 @@ export function TodoList() {
 }
 
 function TodoListItem({todoItem, onCheck}) {
+
+    let strikeThrough = "none"
+    if (todoItem.isDone()) {
+        strikeThrough = "line-through"
+    }
+
     return (
         <li className="todo-item">
-            <span>{todoItem.getNote()}</span>
-            <Checkbox isChecked={todoItem.getIsDone()} onClick={onCheck}/>
+            <span style={{textDecoration: strikeThrough}}>{todoItem.getNote()}</span>
+            <Checkbox isChecked={todoItem.isDone()} onClick={onCheck}/>
         </li>
     );
 }

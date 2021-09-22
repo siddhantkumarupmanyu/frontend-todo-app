@@ -5,23 +5,23 @@
 export default class TodoItem {
 
     #note
-    #isDone
+    #done
 
     constructor(note, isDone) {
         this.#note = note
-        this.#isDone = isDone
+        this.#done = isDone
     }
 
-    getIsDone() {
-        return this.#isDone
+    isDone() {
+        return this.#done
     }
 
     getNote() {
         return this.#note
     }
 
-    setIsDone(done) {
-        this.#isDone = done
+    setDone(done) {
+        this.#done = done
     }
 
 }
