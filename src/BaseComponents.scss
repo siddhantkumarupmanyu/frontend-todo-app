@@ -3,6 +3,7 @@
 .text-input {
   outline: none;
   border: none;
+  overflow: auto;
   @include font.body1();
 }
 
