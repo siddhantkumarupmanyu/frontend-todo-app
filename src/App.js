@@ -32,7 +32,7 @@ function reducer(state, action) {
             }
         case "item-click":
             const newArray = Array.from(state.todoItems)
-            newArray[action.index] = new TodoItem(newArray[action.index].getNote(), !newArray[action.index].isDone())
+            newArray[action.index] = newArray[action.index].flipStatus()
             return {
                 ...state,
                 todoItems: newArray

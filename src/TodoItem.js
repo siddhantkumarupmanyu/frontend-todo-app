@@ -1,19 +1,23 @@
 export default class TodoItem {
 
     #note
-    #done
+    #isDone
 
     constructor(note, isDone) {
         this.#note = note
-        this.#done = isDone
+        this.#isDone = isDone
     }
 
     isDone() {
-        return this.#done
+        return this.#isDone
     }
 
     getNote() {
         return this.#note
+    }
+
+    flipStatus() {
+        return new TodoItem(this.#note, !this.#isDone)
     }
 
 }
