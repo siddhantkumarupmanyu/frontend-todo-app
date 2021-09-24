@@ -1,7 +1,32 @@
 
+
+// https://material.io/design/layout/understanding-layout.html#layout-anatomy
 .app {
   border-top: solid 4px var(--color-primary);
-  padding: 16px;
+  padding-top: 16px;
+
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media screen and (min-width: 600px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media screen and (min-width: 905px) {
+    padding-left: calc((100% - 840px) / 2);
+    padding-right: calc((100% - 840px) / 2);
+  }
+
+  @media screen and (min-width: 1240px) {
+    padding-left: 200px;
+    padding-right: 200px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-left: calc((100% - 1040px) / 2);
+    padding-right: calc((100% - 1040px) / 2);
+  }
 }
 
 /*
