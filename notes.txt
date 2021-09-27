@@ -6,3 +6,23 @@
 
 - does change in state affects any other thing in the app
     - if not let it remain encapsulated in the component
+
+
+I think I somewhat implemented the PAC architecture.
+    - we can think of App.js as the main screen or top level PAC agent, which is composed of Middle level agents.
+        - These agents are composed of middle level agents
+        - These components represents the single screen
+        - in this case there is only one component, App.js
+        - these agents know about how to retrieve data or have a dependency on domain.
+    - AddItem/TodoList as Middle Level PAC agents
+        - these contain/compose the low level agents
+        - in context of this app; these agents specify how low level components should be arranged.
+        - they act as a container.
+        - these are somewhat coupled to the top level agents but at the same time they are cohesive/coherent in themselves. (i.e. representing only single thing)
+        - these agents should not know the domain/logical part of the application, or they should not have any domain dependency.
+            - any data they get should be passed by top level agent which composed them
+    - And base components as low level PAC agents
+        - these agents are the most abstract ones
+        - these agents should be reused the most throughout the ui
+        - these should be decoupled from any of the above agents
+            - any data they get should be passed by top/middle level agent or which every agent composed/is using them
