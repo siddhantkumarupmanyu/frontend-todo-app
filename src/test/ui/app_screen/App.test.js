@@ -1,5 +1,5 @@
 import {render} from "@testing-library/react";
-import App from "../../main/app_screen/App";
+import App from "../../../main/ui/app_screen/App";
 
 // we cannot test this thing in here
 // since this is also kind of 'how it looks' thing

@@ -1,5 +1,5 @@
 import {render, screen} from "@testing-library/react";
-import {AddItem} from "../../main/app_screen/AddItem";
+import {AddItem} from "../../../main/ui/app_screen/AddItem";
 import userEvent from "@testing-library/user-event";
 
 
