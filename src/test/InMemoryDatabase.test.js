@@ -34,3 +34,14 @@ test("incorrectIdException", () => {
 
     expect(() => database.insertTodo(new TodoItem("note", true, 10))).toThrow(IncorrectIdException);
 })
+
+test("addObserver", (done) => {
+    database.addListener(() => {
+
+        const firstItem = database.getTodoItems()[0]
+        expect(firstItem.equals(new TodoItem("note", false, 0))).toBe(true)
+        done()
+    })
+
+    database.insertTodo(new TodoItem("note", false))
+})

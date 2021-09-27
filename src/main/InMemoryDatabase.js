@@ -5,10 +5,12 @@ export class InMemoryDatabase {
 
     #autoId
     #items
+    #listeners
 
     constructor() {
         this.#autoId = 0
         this.#items = []
+        this.#listeners = []
     }
 
     insertTodo(todoItem) {
@@ -17,6 +19,7 @@ export class InMemoryDatabase {
         } else {
             this._updateItem(todoItem)
         }
+        this._notifyListeners()
     }
 
     _insertNewItem(todoItem) {
@@ -37,5 +40,15 @@ export class InMemoryDatabase {
 
     _getId() {
         return this.#autoId++;
+    }
+
+    addListener(listener) {
+        this.#listeners.push(listener)
+    }
+
+    _notifyListeners() {
+        for (const listener of this.#listeners) {
+            listener()
+        }
     }
 }
