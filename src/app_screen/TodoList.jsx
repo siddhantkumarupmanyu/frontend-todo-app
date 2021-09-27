@@ -1,4 +1,4 @@
-import {Checkbox, List} from "./BaseComponents";
+import {Checkbox, List} from "../base_components/BaseComponents";
 import './TodoList.scss';
 
 export function TodoList({todoItems, onItemClick}) {
