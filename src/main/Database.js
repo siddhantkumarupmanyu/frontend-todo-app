@@ -22,21 +22,22 @@ export default class Database {
     /**
      * @abstract
      */
-    saveTodo() {
+    insertTodo() {
         throw new AbstractMethodException()
     }
 
     /**
-     * @param id {number}
-     */
-    getTodo(id) {
-        throw new AbstractMethodException()
-    }
-
-    /**
+     * @abstract
      * @return {Array.<TodoItem>}
      */
-    getTodoList() {
+    getTodoItems() {
+        throw new AbstractMethodException()
+    }
+
+    /**
+     * @abstract
+     */
+    addListener() {
         throw new AbstractMethodException()
     }
 

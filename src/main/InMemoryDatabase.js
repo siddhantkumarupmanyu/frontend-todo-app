@@ -1,13 +1,15 @@
 import TodoItem from "./vo/TodoItem";
 import IncorrectIdException from "./IncorrectIdException";
+import Database from "./Database";
 
-export class InMemoryDatabase {
+export class InMemoryDatabase extends Database {
 
     #autoId
     #items
     #listeners
 
     constructor() {
+        super();
         this.#autoId = 0
         this.#items = []
         this.#listeners = []
