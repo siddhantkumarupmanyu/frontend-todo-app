@@ -2,7 +2,7 @@ import {useEffect, useReducer} from "react";
 import './App.scss'
 import {AddItem} from "./AddItem";
 import {TodoList} from "./TodoList";
-import TodoItem from "./TodoItem";
+import TodoItem from "../../vo/TodoItem";
 import * as Utils from "../ui_utils/utils";
 
 const initialState = {
