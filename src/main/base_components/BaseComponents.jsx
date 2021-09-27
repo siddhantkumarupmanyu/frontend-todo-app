@@ -23,6 +23,7 @@ export function CancelIconButton({isVisible, onClick}) {
 
     const visibilityValue = isVisible ? "visible" : "hidden"
 
+    // todo: should rename css class cancel to cancel-icon-button
     return (
         <span tabIndex="0" className="material-icons cancel"
               style={{visibility: visibilityValue}}

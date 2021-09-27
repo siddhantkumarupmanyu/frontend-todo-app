@@ -1,21 +1,30 @@
 import './AddItem.scss'
 import {Button, CancelIconButton, TextInput} from "../base_components/BaseComponents";
+import {useState} from "react";
 
-export function AddItem({value, onChange, onSave, onCancel}) {
+export function AddItem({onSave}) {
 
-    function setFocusToInputAndCallOnCancel() {
+    let [inputText, setInputText] = useState("")
+
+    function setFocusToInputAndResetInputText() {
         const input = document.querySelector(".add-item > .text-input")
         input.focus()
-        onCancel()
+        setInputText("")
     }
 
-    const cancelIconVisibility = value !== ""
+    function resetInputTextOnSave() {
+        if (onSave(inputText)) {
+            setInputText("")
+        }
+    }
+
+    const cancelIconVisibility = inputText !== ""
 
     return (
         <div className="add-item">
-            <TextInput value={value} onChange={onChange}/>
-            <CancelIconButton isVisible={cancelIconVisibility} onClick={setFocusToInputAndCallOnCancel}/>
-            <Button text="Add" onClick={onSave}/>
+            <TextInput value={inputText} onChange={(e) => setInputText(e.target.value)}/>
+            <CancelIconButton isVisible={cancelIconVisibility} onClick={setFocusToInputAndResetInputText}/>
+            <Button text="Add" onClick={resetInputTextOnSave}/>
         </div>
     )
 }

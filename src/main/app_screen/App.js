@@ -10,26 +10,14 @@ const initialState = {
         new TodoItem("note1", false),
         new TodoItem("note2", true)
     ],
-    inputText: "",
 }
 
 function reducer(state, action) {
     switch (action.type) {
-        case "input-text-value-change":
-            return {
-                ...state,
-                inputText: action.value
-            }
         case "add-item":
             return {
                 ...state,
-                todoItems: state.todoItems.concat([new TodoItem(state.inputText, false)]),
-                inputText: ""
-            }
-        case "cancel":
-            return {
-                ...state,
-                inputText: ""
+                todoItems: state.todoItems.concat([new TodoItem(action.text, false)]),
             }
         case "item-click":
             const newArray = Array.from(state.todoItems)
@@ -52,13 +40,15 @@ export default function App() {
         Utils.setRGBVars()
     }, [])
 
+    function addItem(text) {
+        appDispatch({type: "add-item", text: text})
+        // return true if save is successful
+        return true
+    }
+
     return (
         <div className="app">
-            <AddItem
-                value={appState.inputText}
-                onChange={(e) => appDispatch({type: "input-text-value-change", value: e.target.value})}
-                onSave={() => appDispatch({type: "add-item"})}
-                onCancel={() => appDispatch({type: "cancel"})}/>
+            <AddItem onSave={addItem}/>
             <TodoList todoItems={appState.todoItems}
                       onItemClick={(todoItem, index) => appDispatch({
                           type: "item-click",
