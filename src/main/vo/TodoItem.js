@@ -25,14 +25,10 @@ export default class TodoItem {
     getId() {
         return this.#id
     }
-
-    // TODO:
-    // we should not change the value here
-    //  - well it does not matter, since this class is immutable already
-    //  - IDK what i was thinking at that time. lol
-    // flipStatus() {
-    //     return new TodoItem(this.#note, !this.#isDone)
-    // }
+    
+    flipStatus() {
+        return new TodoItem(this.#note, !this.#isDone, this.#id)
+    }
 
     equals(other) {
         // https://stackoverflow.com/questions/1249531/how-to-get-a-javascript-objects-class

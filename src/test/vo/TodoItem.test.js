@@ -11,6 +11,14 @@ test("valueObject", () => {
     expect(a2.equals(a1)).toBe(true)
     expect(b.equals(a1)).toBe(false)
 })
+test("flipStatus", () => {
+    const item = new TodoItem("a", false, 1)
+    const flippedItem = item.flipStatus()
+
+    expect(flippedItem.getId()).toEqual(1)
+    expect(flippedItem.getNote()).toEqual("a")
+    expect(flippedItem.isDone()).toEqual(true)
+})
 
 test("shouldThrowException_WhenIdIsSameButNoteIsDifferent", () => {
     const a = new TodoItem("a", false, 1)
