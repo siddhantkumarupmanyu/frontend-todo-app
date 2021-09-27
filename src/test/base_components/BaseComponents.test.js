@@ -1,5 +1,5 @@
 import {render, screen} from "@testing-library/react";
-import {Button, CancelIconButton, Checkbox, List, TextInput} from "./BaseComponents";
+import {Button, CancelIconButton, Checkbox, List, TextInput} from "../../main/base_components/BaseComponents";
 import userEvent from "@testing-library/user-event";
 
 
