@@ -47,14 +47,9 @@ export default function App() {
 
     const [appState, appDispatch] = useReducer(reducer, initialState)
 
-    // making sure useEffectDoes does not run every time component is updated/rendered
-    const [rgbVars, setRgbVarsState] = useState(false)
     useEffect(() => {
         setRGBVars()
-        setRgbVarsState(true)
-        // todo: this is getting called two times on initial load; fix this
-        // console.log("one time ")
-    }, [rgbVars])
+    }, [])
 
     return (
         <div className="app">
