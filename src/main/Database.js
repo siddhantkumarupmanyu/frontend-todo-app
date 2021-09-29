@@ -1,15 +1,7 @@
 import {AbstractClassException, AbstractMethodException} from "./AbstractExceptions";
 
-
-// In my opinion i am unnecessary creating this
-// interface right now. I do not know what abstraction I gonna need
-// therefore pausing right here for this file.
-// first I am going to implement the InMemoryDatabase, and then
-// I will extract/abstract the methods.
-
 /**
  * Interface Database.
- *
  * @class Database
  */
 export default class Database {
@@ -21,8 +13,10 @@ export default class Database {
 
     /**
      * @abstract
+     * @param {TodoItem} todoItem
+     * @return {void}
      */
-    insertTodo() {
+    insertTodo(todoItem) {
         throw new AbstractMethodException()
     }
 
@@ -34,10 +28,19 @@ export default class Database {
         throw new AbstractMethodException()
     }
 
+
+    // lack of better name
+    /**
+     * @callback Database~updateListener
+     * @return {void}
+     */
+
     /**
      * @abstract
+     * @param {Database~updateListener} listener
+     * @return {void}
      */
-    addListener() {
+    addListener(listener) {
         throw new AbstractMethodException()
     }
 
