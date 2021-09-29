@@ -23,13 +23,10 @@ test("addNewTodo", () => {
 
     appViewModel.addNewTodo("note")
 
-    const insertTodo = Database.mock.instances[0].insertTodo
+    const insertTodo = getMockedInsertTodo()
 
     expect(insertTodo).toBeCalledTimes(1)
-    // expect(insertTodo).toHaveBeenCalledWith(new TodoItem("note2", false, TodoItem.NO_ID))
     expect(insertTodo).toBeCalledWith(expect.todoItem(new TodoItem("note", false, TodoItem.NO_ID)))
-    // expect(insertTodo).toBeCalledWithItem()
-    // expect((insertTodo.mock.calls[0][0]).equals(new TodoItem("note2", false, TodoItem.NO_ID))).toBe(true)
 })
 
 test.skip("flipItemStatus", () => {
@@ -47,8 +44,7 @@ test.skip("jestMockSpike", () => {
     // checking invoking of constructor
     expect(Database).toBeCalledTimes(1)
 
-    // getting insertTodo mocked function
-    const insertTodo = Database.mock.instances[0].insertTodo
+    const insertTodo = getMockedInsertTodo()
 
     // checking invoking of function
     expect(insertTodo).toBeCalledTimes(1)
@@ -73,3 +69,7 @@ expect.extend({
         }
     }
 })
+
+function getMockedInsertTodo() {
+    return Database.mock.instances[0].insertTodo;
+}
