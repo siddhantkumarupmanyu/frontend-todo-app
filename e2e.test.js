@@ -18,3 +18,7 @@ test("addTodo", async testController => {
     await testController
         .expect(Selector(".todo-item").withText("newTodoItem").exists).ok()
 })
+
+// test("flipTodoState", async testController => {
+//
+// })

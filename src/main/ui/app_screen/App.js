@@ -32,7 +32,7 @@ function reducer(state, action) {
 }
 
 
-export default function App() {
+export default function App({appViewModel}) {
 
     const [appState, appDispatch] = useReducer(reducer, initialState)
 
@@ -41,9 +41,10 @@ export default function App() {
     }, [])
 
     function addItem(text) {
-        appDispatch({type: "add-item", text: text})
+        // appDispatch({type: "add-item", text: text})
         // return true if save is successful
-        return true
+        // return true
+        // todo:
     }
 
     return (
