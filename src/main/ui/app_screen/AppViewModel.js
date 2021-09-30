@@ -16,11 +16,18 @@ export default class AppViewModel {
         this.#database = database
     }
 
-
     /**
      * @param {string} note
      */
     addNewTodo(note) {
         this.#database.insertTodo(new TodoItem(note, false))
     }
+
+    /**
+     * @param {TodoItem} todoItem
+     */
+    flipStatus(todoItem) {
+        this.#database.insertTodo(todoItem.flipStatus())
+    }
+
 }

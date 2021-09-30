@@ -29,9 +29,19 @@ test("addNewTodo", () => {
     expect(insertTodo).toBeCalledWith(expect.todoItem(new TodoItem("note", false, TodoItem.NO_ID)))
 })
 
-test.skip("flipItemStatus", () => {
+test("flipTodoStatus", () => {
+    const database = new Database()
+    const appViewModel = new AppViewModel(database)
 
+    appViewModel.addNewTodo("note")
+    appViewModel.flipStatus(new TodoItem("note", false, 0))
+
+    const insertTodo = getMockedInsertTodo()
+
+    expect(insertTodo).toBeCalledTimes(2)
+    expect(insertTodo).lastCalledWith(expect.todoItem(new TodoItem("note", true, 0)))
 })
+
 
 test.skip("jestMockSpike", () => {
     // we are using automatic mock for mocking es6 class
@@ -52,6 +62,7 @@ test.skip("jestMockSpike", () => {
 })
 
 
+// https://jestjs.io/docs/expect#expectextendmatchers
 // IDK why the failure message is not getting printed
 expect.extend({
     todoItem(received, expected) {
