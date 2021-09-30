@@ -22,6 +22,9 @@ jobs:
   e2e-test:
     name: End To End Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [chrome, firefox]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -30,4 +33,4 @@ jobs:
       - name: Build
         run: yarn build
       - name: Run TestCafe
-        run: yarn run testcafe chrome:headless e2e.test.js --app 'yarn serve -l 3000 -s build'
+        run: yarn run testcafe ${{ matrix.browser }}:headless e2e.test.js --app 'yarn serve -l 3000 -s build'
