@@ -1,4 +1,4 @@
-import {useEffect, useReducer} from "react";
+import {useEffect, useReducer, useState} from "react";
 import './App.scss'
 import {AddItem} from "./AddItem";
 import {TodoList} from "./TodoList";
@@ -34,28 +34,42 @@ function reducer(state, action) {
 
 export default function App({appViewModel}) {
 
-    const [appState, appDispatch] = useReducer(reducer, initialState)
+    let [items, setItems] = useState(appViewModel.getObservableItems().getList())
 
     useEffect(() => {
         Utils.setRGBVars()
     }, [])
 
+    useEffect(() => {
+
+        appViewModel.getObservableItems().addListener((newList) => {
+            // because react needs f*cking Immutability
+            setItems(Array.from(newList))
+        })
+    }, [appViewModel])
+
     function addItem(text) {
-        // appDispatch({type: "add-item", text: text})
         // return true if save is successful
         // return true
-        // todo:
+        try {
+            appViewModel.addNewTodo(text)
+            return true
+        } catch (e) {
+            return false
+        }
     }
 
     return (
         <div className="app">
             <AddItem onSave={addItem}/>
-            <TodoList todoItems={appState.todoItems}
-                      onItemClick={(todoItem, index) => appDispatch({
-                          type: "item-click",
-                          todoItem: todoItem,
-                          index: index
-                      })}/>
+            <TodoList todoItems={items}
+                // todo:
+                // onItemClick={(todoItem, index) => appDispatch({
+                //     type: "item-click",
+                //     todoItem: todoItem,
+                //     index: index
+                // })}
+            />
         </div>
     );
 }

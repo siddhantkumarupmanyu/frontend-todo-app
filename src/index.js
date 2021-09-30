@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import App from './main/ui/app_screen/App';
 import reportWebVitals from './reportWebVitals';
 import './index.css'
+import AppViewModel from "./main/ui/app_screen/AppViewModel";
+import {InMemoryDatabase} from "./main/InMemoryDatabase";
 
 
 // this can be thought of as a entry point
 
 ReactDOM.render(
     <React.StrictMode>
-        <App/>
+        <App appViewModel={new AppViewModel(new InMemoryDatabase())}/>
     </React.StrictMode>,
     document.getElementById('root')
 );

@@ -12,8 +12,14 @@ export default class AppViewModel {
      */
     #database
 
+    /**
+     * @type {ObservableList}
+     */
+    #observableItems
+
     constructor(database) {
         this.#database = database
+        this.#observableItems = database.getTodoItems()
     }
 
     /**
@@ -28,6 +34,13 @@ export default class AppViewModel {
      */
     flipStatus(todoItem) {
         this.#database.insertTodo(todoItem.flipStatus())
+    }
+
+    /**
+     * @return {ObservableList}
+     */
+    getObservableItems() {
+        return this.#observableItems
     }
 
 }
