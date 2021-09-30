@@ -19,6 +19,28 @@ test("addTodo", async testController => {
         .expect(Selector(".todo-item").withText("newTodoItem").exists).ok()
 })
 
-// test("flipTodoState", async testController => {
-//
-// })
+test("flipTodoState", async testController => {
+    const textInput = Selector(".text-input")
+    const addButton = Selector(".button")
+        .withText("ADD")
+
+    await testController
+        .typeText(textInput, "newTodoItem1")
+        .click(addButton)
+    await testController
+        .typeText(textInput, "newTodoItem2")
+        .click(addButton)
+
+    const item1Selector = Selector(".todo-item").withText("newTodoItem1");
+    const item2Selector = Selector(".todo-item").withText("newTodoItem2");
+
+    await testController
+        .expect(item1Selector.exists).ok()
+        .expect(item2Selector.exists).ok()
+
+    await testController
+        .click(item2Selector.child(".checkbox"))
+
+    await testController
+        .expect(item2Selector.child("span").getStyleProperty("text-decoration")).contains("line-through")
+})

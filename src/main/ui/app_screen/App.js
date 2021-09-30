@@ -59,17 +59,15 @@ export default function App({appViewModel}) {
         }
     }
 
+    function clickItem(item, index) {
+        appViewModel.flipStatus(item)
+    }
+
     return (
         <div className="app">
             <AddItem onSave={addItem}/>
             <TodoList todoItems={items}
-                // todo:
-                // onItemClick={(todoItem, index) => appDispatch({
-                //     type: "item-click",
-                //     todoItem: todoItem,
-                //     index: index
-                // })}
-            />
+                      onItemClick={(todoItem, index) => clickItem(todoItem, index)}/>
         </div>
     );
 }

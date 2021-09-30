@@ -9,7 +9,7 @@ export function TodoList({todoItems, onItemClick}) {
                 items={todoItems}
                 ListItem={TodoListItem}
                 listItemProp={(todoItem, index) => ({
-                    key: todoItem.getNote(),
+                    key: todoItem.getId(),
                     todoItem: todoItem,
                     onCheck: () => onItemClick(todoItem, index)
                 })}
