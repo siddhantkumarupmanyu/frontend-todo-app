@@ -7,10 +7,6 @@ import {TodoList} from "./TodoList";
 import TodoItem from "../../vo/TodoItem";
 import * as Utils from "../ui_utils/utils";
 
-// todo: export to github
-//  - use github actions for unit and end to end test
-//  - use local storage instead of InMemory database
-
 export default function App({appViewModel}) {
 
     let [items, setItems] = useState(appViewModel.getObservableItems().getList())

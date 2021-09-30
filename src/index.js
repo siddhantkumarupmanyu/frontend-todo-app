@@ -7,6 +7,12 @@ import AppViewModel from "./main/ui/app_screen/AppViewModel";
 import {InMemoryDatabase} from "./main/InMemoryDatabase";
 
 
+// TODO: remove unnecessary create react app files
+//  - add badges to readme
+//      - netlify deployed
+//      - github action check
+//  - use local storage instead of InMemory database
+
 // this can be thought of as a entry point
 
 ReactDOM.render(
