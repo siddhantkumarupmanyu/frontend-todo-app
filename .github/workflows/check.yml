@@ -30,4 +30,4 @@ jobs:
       - name: Build
         run: yarn build
       - name: Run TestCafe
-        run: yarn run testcafe chrome e2e.test.js --app 'yarn serve -l 3000 -s build'
+        run: yarn run testcafe chrome:headless e2e.test.js --app 'yarn serve -l 3000 -s build'
