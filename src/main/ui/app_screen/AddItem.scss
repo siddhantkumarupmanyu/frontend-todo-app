@@ -1,0 +1,20 @@
+
+.add-item {
+  display: flex;
+  border: solid 2px rgba(var(--rgb-onSurface), 0.12);
+  border-radius: 8px;
+}
+
+.add-item:focus-within {
+  border-color: var(--color-primary);
+}
+
+.add-item > .text-input {
+  flex-grow: 1;
+  margin-left: 8px;
+}
+
+.add-item > .button {
+  align-self: center;
+  margin-right: 4px;
+}

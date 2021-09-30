@@ -1,0 +1,47 @@
+// https://material.io/design/layout/understanding-layout.html#layout-anatomy
+.app {
+  border-top: solid 4px var(--color-primary);
+  padding-top: 16px;
+
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media screen and (min-width: 600px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media screen and (min-width: 905px) {
+    padding-left: calc((100% - 840px) / 2);
+    padding-right: calc((100% - 840px) / 2);
+  }
+
+  @media screen and (min-width: 1240px) {
+    padding-left: 200px;
+    padding-right: 200px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-left: calc((100% - 1040px) / 2);
+    padding-right: calc((100% - 1040px) / 2);
+  }
+}
+
+/*
+app theming
+*/
+// one pro of having var is I can change them dynamically
+// since they are declarative
+// see https://sass-lang.com/documentation/variables
+// changing theme is much easier in this case
+:root {
+  --color-primary: #006400;
+  --color-onPrimary: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-onSurface: #000000;
+
+  /* rbga does not work with plain colors  */
+  // should set these variables in App.js
+  //--rgb-onSurface: 0, 0, 0;
+}

@@ -1,0 +1,45 @@
+@use '../ui_utils/font';
+
+.text-input {
+  outline: none;
+  border: none;
+  overflow: auto;
+  @include font.body1();
+}
+
+.button {
+  border-radius: 4px;
+  padding: 6px 8px;
+  background: var(--color-primary);
+  border: solid 1px var(--color-primary);
+  color: var(--color-onPrimary);
+  text-transform: uppercase;
+  @include font.button();
+}
+
+.cancel {
+  border: none;
+  background: var(--color-surface);
+  color: rgba(var(--rgb-onSurface), 0.54);
+  height: 40px;
+  width: 40px;
+  padding: 8px;
+  cursor: default;
+  user-select: none;
+}
+
+.cancel:hover {
+  color: rgba(var(--rgb-onSurface), 0.87);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checkbox {
+  accent-color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+}
