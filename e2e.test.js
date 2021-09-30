@@ -14,4 +14,7 @@ test("addTodo", async testController => {
     await testController
         .typeText(textInput, "newTodoItem")
         .click(addButton)
+
+    await testController
+        .expect(Selector(".todo-item").withText("newTodoItem").exists).ok()
 })
