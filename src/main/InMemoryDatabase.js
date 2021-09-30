@@ -1,18 +1,21 @@
 import TodoItem from "./vo/TodoItem";
 import IncorrectIdException from "./IncorrectIdException";
 import Database from "./Database";
+import ObservableList from "./ObservableList";
 
 export class InMemoryDatabase extends Database {
 
     #autoId
+
+    /**
+     * @type {ObservableList}
+     */
     #items
-    #listeners
 
     constructor() {
         super();
         this.#autoId = 0
-        this.#items = []
-        this.#listeners = []
+        this.#items = new ObservableList()
     }
 
     insertTodo(todoItem) {
@@ -21,7 +24,6 @@ export class InMemoryDatabase extends Database {
         } else {
             this._updateItem(todoItem)
         }
-        this._notifyListeners()
     }
 
     _insertNewItem(todoItem) {
@@ -33,24 +35,17 @@ export class InMemoryDatabase extends Database {
         if ((todoItem.getId() >= this.#autoId) || (todoItem.getId() < -1)) {
             throw new IncorrectIdException()
         }
-        this.#items[todoItem.getId()] = todoItem
+        this.#items.insert(todoItem, todoItem.getId())
     }
 
+    /**
+     * @return {ObservableList}
+     */
     getTodoItems() {
         return this.#items
     }
 
     _getId() {
         return this.#autoId++;
-    }
-
-    addListener(listener) {
-        this.#listeners.push(listener)
-    }
-
-    _notifyListeners() {
-        for (const listener of this.#listeners) {
-            listener()
-        }
     }
 }
