@@ -1,35 +1,11 @@
-import {useEffect, useReducer, useState} from "react";
+import {useEffect, useState} from "react";
 import './App.scss'
 import {AddItem} from "./AddItem";
 import {TodoList} from "./TodoList";
+// noinspection ES6UnusedImports
+// eslint-disable-next-line
 import TodoItem from "../../vo/TodoItem";
 import * as Utils from "../ui_utils/utils";
-
-const initialState = {
-    todoItems: [
-        new TodoItem("note1", false),
-        new TodoItem("note2", true)
-    ],
-}
-
-function reducer(state, action) {
-    switch (action.type) {
-        case "add-item":
-            return {
-                ...state,
-                todoItems: state.todoItems.concat([new TodoItem(action.text, false)]),
-            }
-        case "item-click":
-            const newArray = Array.from(state.todoItems)
-            newArray[action.index] = new TodoItem(newArray[action.index].getNote(), !newArray[action.index].isDone())
-            return {
-                ...state,
-                todoItems: newArray
-            }
-        default:
-            throw new Error()
-    }
-}
 
 
 export default function App({appViewModel}) {
