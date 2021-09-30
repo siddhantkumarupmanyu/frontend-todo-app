@@ -7,6 +7,9 @@ import {TodoList} from "./TodoList";
 import TodoItem from "../../vo/TodoItem";
 import * as Utils from "../ui_utils/utils";
 
+// todo: export to github
+//  - use github actions for unit and end to end test
+//  - use local storage instead of InMemory database
 
 export default function App({appViewModel}) {
 
@@ -26,7 +29,6 @@ export default function App({appViewModel}) {
 
     function addItem(text) {
         // return true if save is successful
-        // return true
         try {
             appViewModel.addNewTodo(text)
             return true
@@ -35,7 +37,7 @@ export default function App({appViewModel}) {
         }
     }
 
-    function clickItem(item, index) {
+    function itemClick(item, index) {
         appViewModel.flipStatus(item)
     }
 
@@ -43,7 +45,7 @@ export default function App({appViewModel}) {
         <div className="app">
             <AddItem onSave={addItem}/>
             <TodoList todoItems={items}
-                      onItemClick={(todoItem, index) => clickItem(todoItem, index)}/>
+                      onItemClick={(todoItem, index) => itemClick(todoItem, index)}/>
         </div>
     );
 }
