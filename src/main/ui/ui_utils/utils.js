@@ -26,12 +26,18 @@ export function getRGBFromHex(hex) {
     let g = ""
     let b = ""
 
-    if (hex.length < 7) {
+    if (hex.length === 4) {
+        r = parseInt(hex[1] + hex[1], 16).toString()
+        g = parseInt(hex[2] + hex[2], 16).toString()
+        b = parseInt(hex[3] + hex[3], 16).toString()
+
+    } else if (hex.length === 7) {
+        r = parseInt(hex[1] + hex[2], 16).toString()
+        g = parseInt(hex[3] + hex[4], 16).toString()
+        b = parseInt(hex[5] + hex[6], 16).toString()
+    } else {
         throw new Error("unsupported hex length")
     }
 
-    r = parseInt(hex[1] + hex[2], 16).toString()
-    g = parseInt(hex[3] + hex[4], 16).toString()
-    b = parseInt(hex[5] + hex[6], 16).toString()
     return [r, g, b]
 }

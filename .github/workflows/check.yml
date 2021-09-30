@@ -27,10 +27,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Modules
         run: yarn
-      - name: Start React Server
-        run: yarn start
+      - name: Build
+        run: yarn build
       - name: Run TestCafe
-        uses: DevExpress/testcafe-action@latest
-        with:
-          skip-install: true
-          args: "chrome e2e.test.js"
+        run: yarn run testcafe chrome e2e.test.js --app 'yarn serve -l 3000 -s build'
