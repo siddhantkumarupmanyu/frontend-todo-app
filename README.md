@@ -1,4 +1,6 @@
 # React Todo App
+[![check](https://github.com/siddhantkumarupmanyu/frontend-todo-app/actions/workflows/check.yml/badge.svg)](https://github.com/siddhantkumarupmanyu/frontend-todo-app/actions/workflows/check.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/186a166f-b776-4963-85c6-75f1de5729ac/deploy-status)](https://app.netlify.com/sites/frontend-todo-app-react/deploys)
 
 Simple todo app created with React.
 
