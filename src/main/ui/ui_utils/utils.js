@@ -1,25 +1,34 @@
 export function setRGBVars() {
-    const colorVars = getAllCssVars().filter((value) => (value.startsWith("--color")))
+    // const colorVars = getAllCssVars().filter((value) => (value.startsWith("--color")))
+
+    const colorVars = [
+        "--color-primary",
+        "--color-onPrimary",
+        "--color-surface",
+        "--color-onSurface"
+    ]
 
     const rootStyle = document.documentElement.style
     const computedRootStyle = getComputedStyle(document.documentElement)
     for (const colorVar of colorVars) {
-        const colorHex = computedRootStyle.getPropertyValue(colorVar)
+        const colorHex = computedRootStyle.getPropertyValue(colorVar).trim()
         const [r, g, b] = getRGBFromHex(colorHex)
         rootStyle.setProperty(`--rgb-${(colorVar.substr(8))}`, `${r},${g},${b}`)
     }
 }
 
-export function getAllCssVars() {
-    const cssVars = []
-    const rootStyleProperties = getComputedStyle(document.documentElement)
-    for (const property in rootStyleProperties) {
-        if (String(rootStyleProperties[property]).startsWith("--")) {
-            cssVars.push(rootStyleProperties[property])
-        }
-    }
-    return cssVars
-}
+// should fix this in future
+// get getComputedStyle do not return css variables in chrome
+// export function getAllCssVars() {
+//     const cssVars = []
+//     const rootStyleProperties = getComputedStyle(document.documentElement)
+//     for (const property in rootStyleProperties) {
+//         if (String(rootStyleProperties[property]).startsWith("--")) {
+//             cssVars.push(rootStyleProperties[property])
+//         }
+//     }
+//     return cssVars
+// }
 
 export function getRGBFromHex(hex) {
     let r = ""
