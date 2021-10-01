@@ -2,13 +2,13 @@
 
 Simple todo app created with React.
 
-### Screenshot
-
-![App Screenshot](./screenshot-firefox.png)
-
 ### Deployed at [frontend-todo-app-react.netlify.app](https://frontend-todo-app-react.netlify.app/)
 
 Netlify automatically re-build and re-deploys the app on push.
+
+### Screenshot
+
+<img src="screenshot-firefox.png" alt="App Screenshot" width="280">
 
 ### CI and Test
 
