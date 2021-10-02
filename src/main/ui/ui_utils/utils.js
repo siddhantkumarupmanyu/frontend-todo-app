@@ -50,3 +50,9 @@ export function getRGBFromHex(hex) {
 
     return [r, g, b]
 }
+
+
+// no need
+// export function getValueOfCssVar(cssVar) {
+//     return getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim()
+// }

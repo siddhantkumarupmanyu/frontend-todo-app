@@ -1,3 +1,4 @@
+@use '../ui_utils/animation';
 
 .add-item {
   display: flex;
@@ -17,4 +18,9 @@
 .add-item > .button {
   align-self: center;
   margin-right: 4px;
+}
+
+// this class should go in css_utils in ui_utils  folder
+.error-border:focus-within {
+  border-color: var(--color-error);
 }

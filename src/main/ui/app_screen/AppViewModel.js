@@ -26,7 +26,19 @@ export default class AppViewModel {
      * @param {string} note
      */
     addNewTodo(note) {
+        if (this.isEmpty(note)) {
+            // i could have used a return false from here;
+            // but that also means to change catching exception from ui to viewModel
+            // IDK if that's the right thing to do right now
+
+            // could make a Exception; like EmptyStringException
+            throw new Error("Empty Note")
+        }
         this.#database.insertTodo(new TodoItem(note, false))
+    }
+
+    isEmpty(note) {
+        return (note.trim().length === 0) || (note.trim() === "");
     }
 
     /**
