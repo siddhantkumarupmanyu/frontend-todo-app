@@ -38,6 +38,10 @@ export class InMemoryDatabase extends Database {
         this.#items.insert(todoItem, todoItem.getId())
     }
 
+    deleteTodo(todoItem) {
+        //todo:
+    }
+
     /**
      * @return {ObservableList}
      */

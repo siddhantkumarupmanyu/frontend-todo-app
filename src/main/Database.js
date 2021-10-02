@@ -22,6 +22,15 @@ export default class Database {
 
     /**
      * @abstract
+     * @param {TodoItem} todoItem
+     * @return {void}
+     */
+    deleteTodo(todoItem) {
+        throw new AbstractMethodException()
+    }
+
+    /**
+     * @abstract
      */
     getTodoItems() {
         throw new AbstractMethodException()

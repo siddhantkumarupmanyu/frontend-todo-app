@@ -42,6 +42,19 @@ test("flipTodoStatus", () => {
     expect(insertTodo).lastCalledWith(expect.todoItem(new TodoItem("note", true, 0)))
 })
 
+test("deleteNote", () => {
+    const database = new Database()
+    const appViewModel = new AppViewModel(database)
+
+    appViewModel.addNewTodo("note")
+    appViewModel.deleteTodo(new TodoItem("note", false, 0))
+
+    const deleteTodo = getMockedDeleteTodo()
+
+    expect(deleteTodo).toBeCalledTimes(1)
+    expect(deleteTodo).toBeCalledWith(expect.todoItem(new TodoItem("note", false, 0)))
+})
+
 
 test.skip("jestMockSpike", () => {
     // we are using automatic mock for mocking es6 class
@@ -83,4 +96,8 @@ expect.extend({
 
 function getMockedInsertTodo() {
     return Database.mock.instances[0].insertTodo;
+}
+
+function getMockedDeleteTodo() {
+    return Database.mock.instances[0].deleteTodo;
 }

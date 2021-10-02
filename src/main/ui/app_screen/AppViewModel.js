@@ -49,6 +49,13 @@ export default class AppViewModel {
     }
 
     /**
+     * @param {TodoItem} todoItem
+     */
+    deleteTodo(todoItem) {
+        this.#database.deleteTodo(todoItem)
+    }
+
+    /**
      * @return {ObservableList}
      */
     getObservableItems() {
