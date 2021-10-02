@@ -17,7 +17,7 @@
   @include font.button();
 }
 
-.cancel {
+.material-icon-button {
   border: none;
   background: var(--color-surface);
   color: rgba(var(--rgb-onSurface), 0.54);
@@ -28,7 +28,7 @@
   user-select: none;
 }
 
-.cancel:hover {
+.material-icon-button:hover {
   color: rgba(var(--rgb-onSurface), 0.87);
 }
 

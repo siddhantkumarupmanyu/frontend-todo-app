@@ -1,5 +1,11 @@
 import {render, screen} from "@testing-library/react";
-import {Button, CancelIconButton, Checkbox, List, TextInput} from "../../../main/ui/base_components/BaseComponents";
+import {
+    Button,
+    Checkbox,
+    List,
+    MaterialIconButton,
+    TextInput
+} from "../../../main/ui/base_components/BaseComponents";
 import userEvent from "@testing-library/user-event";
 
 
@@ -38,21 +44,21 @@ test("textInput", () => {
     expect(inputText).toHaveDisplayValue("initial+1")
 })
 
-test("cancelIconButton", () => {
+test("materialIconButton", () => {
 
-    const {rerender} = render(<CancelIconButton isVisible={false}/>)
+    const {rerender} = render(<MaterialIconButton iconName="cancel" style={{visibility: "hidden"}}/>)
 
-    const cancelButton = document.querySelector(".cancel");
+    const cancelButton = screen.getByText("cancel")
 
     expect(cancelButton).toBeInTheDocument()
     expect(cancelButton).not.toBeVisible()
 
-    rerender(<CancelIconButton isVisible={true}/>)
+    rerender(<MaterialIconButton iconName="cancel" style={{visibility: "visible"}}/>)
     expect(cancelButton).toBeVisible()
 
     const fn = jest.fn()
 
-    rerender(<CancelIconButton isVisible={true} onClick={fn}/>)
+    rerender(<MaterialIconButton iconName="cancel" onClick={fn} style={{visibility: "visible"}}/>)
     userEvent.click(cancelButton)
     expect(fn).toHaveBeenCalledTimes(1)
 })
