@@ -22,7 +22,7 @@ test("updateItem", () => {
     database.insertTodo(new TodoItem("note", false))
 
     const updatedItem = new TodoItem("note", true, 0)
-    database.insertTodo(updatedItem)
+    database.updateItem(new TodoItem("note", false, 0), updatedItem)
 
     expect(database.getTodoItems().getList()[0].equals(updatedItem)).toBe(true)
 })
@@ -48,7 +48,7 @@ test("updateItemAfterDeletion", () => {
     database.deleteTodo(new TodoItem("note", false, 0))
 
     const updatedItem = new TodoItem("note2", true, 1);
-    database.insertTodo(updatedItem)
+    database.updateItem(new TodoItem("note2", false, 1), updatedItem)
 
     expect(database.getTodoItems().getList()[0].equals(updatedItem)).toBe(true)
 })
