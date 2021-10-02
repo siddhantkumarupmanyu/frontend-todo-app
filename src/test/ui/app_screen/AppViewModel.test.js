@@ -33,13 +33,21 @@ test("flipTodoStatus", () => {
     const database = new Database()
     const appViewModel = new AppViewModel(database)
 
-    appViewModel.addNewTodo("note")
-    appViewModel.flipStatus(new TodoItem("note", false, 0))
+    appViewModel.addNewTodo("note0")
+    appViewModel.addNewTodo("note1")
+    appViewModel.deleteTodo(new TodoItem("note", false, 0))
 
-    const insertTodo = getMockedInsertTodo()
+    appViewModel.addNewTodo("note2")
 
-    expect(insertTodo).toBeCalledTimes(2)
-    expect(insertTodo).lastCalledWith(expect.todoItem(new TodoItem("note", true, 0)))
+    appViewModel.flipStatus(new TodoItem("note2", false, 2))
+
+    const updateItem = getMockedUpdateItem()
+
+    expect(updateItem).toBeCalledTimes(1)
+    expect(updateItem).lastCalledWith(
+        expect.todoItem(new TodoItem("note2", false, 2)),
+        expect.todoItem(new TodoItem("note2", true, 2))
+    )
 })
 
 test("deleteNote", () => {
@@ -100,4 +108,8 @@ function getMockedInsertTodo() {
 
 function getMockedDeleteTodo() {
     return Database.mock.instances[0].deleteTodo;
+}
+
+function getMockedUpdateItem() {
+    return Database.mock.instances[0].updateItem;
 }

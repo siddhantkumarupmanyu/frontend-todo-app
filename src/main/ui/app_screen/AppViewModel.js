@@ -45,7 +45,7 @@ export default class AppViewModel {
      * @param {TodoItem} todoItem
      */
     flipStatus(todoItem) {
-        this.#database.insertTodo(todoItem.flipStatus())
+        this.#database.updateItem(todoItem, todoItem.flipStatus())
     }
 
     /**

@@ -26,6 +26,7 @@ export class InMemoryDatabase extends Database {
         this.#items.push(todoItemWithId)
     }
 
+    // todo: rename updateItem to updateTodo
     updateItem(currentItem, updatedItem) {
         this.#items.updateItem(currentItem, (item, listItem) => (item.equals(listItem)), updatedItem)
     }
