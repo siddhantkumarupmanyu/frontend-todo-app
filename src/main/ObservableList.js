@@ -22,6 +22,19 @@ export default class ObservableList {
         this._notifyListeners()
     }
 
+    removeAt(index) {
+        this.#list.splice(index, 1)
+        this._notifyListeners()
+    }
+
+    removeItem(item, areEqual) {
+        for (let i = 0; i < this.#list.length; i++) {
+            if (areEqual(item, this.#list[i])) {
+                return this.removeAt(i)
+            }
+        }
+    }
+
     getList() {
         return this.#list
     }
