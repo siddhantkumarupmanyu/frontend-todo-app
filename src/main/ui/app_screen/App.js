@@ -19,7 +19,7 @@ export default function App({appViewModel}) {
 
         appViewModel.getObservableItems().addListener((newList) => {
             // because react needs f*cking Immutability
-            setItems(Array.from(newList))
+            setItems(Array.from(newList).reverse())
         })
     }, [appViewModel])
 
