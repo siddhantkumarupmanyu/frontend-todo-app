@@ -38,11 +38,16 @@ export default function App({appViewModel}) {
         appViewModel.flipStatus(item)
     }
 
+    function itemDelete(item, index) {
+        appViewModel.deleteTodo(item)
+    }
+
     return (
         <div className="app">
             <AddItem onSave={addItem}/>
             <TodoList todoItems={items}
-                      onItemClick={(todoItem, index) => itemClick(todoItem, index)}/>
+                      onItemClick={itemClick}
+                      onItemDelete={itemDelete}/>
         </div>
     );
 }

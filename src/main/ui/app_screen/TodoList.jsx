@@ -1,8 +1,7 @@
 import {Checkbox, List, MaterialIconButton} from "../base_components/BaseComponents";
 import './TodoList.scss';
 
-// todo implement onDelete
-export function TodoList({todoItems, onItemClick}) {
+export function TodoList({todoItems, onItemClick, onItemDelete}) {
 
     return (
         <div className="todo-list">
@@ -12,7 +11,8 @@ export function TodoList({todoItems, onItemClick}) {
                 listItemProp={(todoItem, index) => ({
                     key: todoItem.getId(),
                     todoItem: todoItem,
-                    onCheck: () => onItemClick(todoItem, index)
+                    onCheck: () => onItemClick(todoItem, index),
+                    onDelete: () => onItemDelete(todoItem, index)
                 })}
             />
         </div>
