@@ -1,4 +1,4 @@
-import {Checkbox, List} from "../base_components/BaseComponents";
+import {Checkbox, List, MaterialIconButton} from "../base_components/BaseComponents";
 import './TodoList.scss';
 
 export function TodoList({todoItems, onItemClick}) {
@@ -18,7 +18,7 @@ export function TodoList({todoItems, onItemClick}) {
     )
 }
 
-function TodoListItem({todoItem, onCheck}) {
+function TodoListItem({todoItem, onCheck, onDelete}) {
 
     let strikeThrough = "none"
     if (todoItem.isDone()) {
@@ -27,8 +27,9 @@ function TodoListItem({todoItem, onCheck}) {
 
     return (
         <li className="todo-item">
-            <span style={{textDecoration: strikeThrough}}>{todoItem.getNote()}</span>
+            <span className="note-text" style={{textDecoration: strikeThrough}}>{todoItem.getNote()}</span>
             <Checkbox isChecked={todoItem.isDone()} onClick={onCheck}/>
+            <MaterialIconButton iconName="delete" onClick={onDelete}/>
         </li>
     );
 }
