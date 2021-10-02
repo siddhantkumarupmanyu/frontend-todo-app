@@ -39,7 +39,7 @@ export class InMemoryDatabase extends Database {
     }
 
     deleteTodo(todoItem) {
-        //todo:
+        this.#items.removeItem(todoItem, (item, listItem) => (item.equals(listItem)))
     }
 
     /**
