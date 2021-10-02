@@ -1,4 +1,5 @@
 import ObservableList from "../main/ObservableList";
+import IndexOutOfBoundException from "../main/IndexOutOfBoundException";
 
 test("push", (done) => {
     const list = new ObservableList()
@@ -75,4 +76,11 @@ test("removeItem", (done) => {
     list.push("item2")
 
     list.removeItem("item1", (item1, item2) => (item1 === item2))
+})
+
+test("removeAtThrowsIndexOutOfBoundException", () => {
+    const list = new ObservableList()
+    expect(() => list.removeAt(-1)).toThrow(IndexOutOfBoundException);
+    expect(() => list.removeAt(0)).toThrow(IndexOutOfBoundException);
+    expect(() => list.removeAt(1)).toThrow(IndexOutOfBoundException);
 })

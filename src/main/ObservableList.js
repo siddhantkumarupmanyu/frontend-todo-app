@@ -1,3 +1,5 @@
+import IndexOutOfBoundException from "./IndexOutOfBoundException";
+
 export default class ObservableList {
 
     #list
@@ -23,6 +25,9 @@ export default class ObservableList {
     }
 
     removeAt(index) {
+        if ((index < 0) || (index >= this.#list.length)) {
+            throw new IndexOutOfBoundException()
+        }
         this.#list.splice(index, 1)
         this._notifyListeners()
     }
