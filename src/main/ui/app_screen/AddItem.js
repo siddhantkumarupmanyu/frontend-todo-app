@@ -1,5 +1,5 @@
 import './AddItem.scss'
-import {Button, CancelIconButton, TextInput} from "../base_components/BaseComponents";
+import {Button, MaterialIconButton, TextInput} from "../base_components/BaseComponents";
 import {useState} from "react";
 
 export function AddItem({onSave}) {
@@ -22,7 +22,9 @@ export function AddItem({onSave}) {
         }
     }
 
-    const cancelIconVisibility = inputText !== ""
+    const cancelIconStyle = {
+        visibility: (inputText !== "") ? "visible" : "hidden"
+    }
 
     function onTextChange(e) {
         setErrorCssClasses("")
@@ -37,7 +39,7 @@ export function AddItem({onSave}) {
     return (
         <div className={`add-item ${errorCssClasses}`} onAnimationEnd={() => setErrorCssClasses("error-border")}>
             <TextInput value={inputText} onChange={onTextChange} placeholder={placeholderText}/>
-            <CancelIconButton isVisible={cancelIconVisibility} onClick={setFocusToInputAndResetInputText}/>
+            <MaterialIconButton iconName="cancel" onClick={setFocusToInputAndResetInputText} style={cancelIconStyle}/>
             <Button text="Add" onClick={resetInputTextOnSave}/>
         </div>
     )
