@@ -1,12 +1,13 @@
 import './BaseComponents.scss'
 
-export function TextInput({value, onChange}) {
+export function TextInput({value, placeholder, onChange}) {
     return (
         <input
             className="text-input"
             type="text"
             onChange={onChange}
-            value={value}/>
+            value={value}
+            placeholder={placeholder}/>
     )
 }
 

@@ -25,11 +25,12 @@ export default function App({appViewModel}) {
 
     function addItem(text) {
         // return true if save is successful
+        // should move this catching logic in appViewModel?
         try {
             appViewModel.addNewTodo(text)
-            return true
+            return ""
         } catch (e) {
-            return false
+            return e.message
         }
     }
 

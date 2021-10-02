@@ -5,6 +5,7 @@ import {useState} from "react";
 export function AddItem({onSave}) {
 
     let [inputText, setInputText] = useState("")
+    let [errorText, setErrorText] = useState("")
     let [errorCssClasses, setErrorCssClasses] = useState("")
 
     function setFocusToInputAndResetInputText() {
@@ -14,11 +15,12 @@ export function AddItem({onSave}) {
     }
 
     function resetInputTextOnSave() {
-        if (inputText.trim() === "") {
-            setErrorCssClasses("error-border error-shake")
-        }
-        if (onSave(inputText)) {
+        const errorMsg = onSave(inputText)
+        if (errorMsg === "") { // successful save
             setInputText("")
+        } else {
+            setErrorCssClasses("error-border error-shake")
+            setErrorText(errorMsg)
         }
     }
 
@@ -26,12 +28,13 @@ export function AddItem({onSave}) {
 
     function onTextChange(e) {
         setErrorCssClasses("")
+        setErrorText("")
         setInputText(e.target.value);
     }
 
     return (
         <div className={`add-item ${errorCssClasses}`} onAnimationEnd={() => setErrorCssClasses("error-border")}>
-            <TextInput value={inputText} onChange={onTextChange}/>
+            <TextInput value={inputText} onChange={onTextChange} placeholder={errorText}/>
             <CancelIconButton isVisible={cancelIconVisibility} onClick={setFocusToInputAndResetInputText}/>
             <Button text="Add" onClick={resetInputTextOnSave}/>
         </div>
