@@ -29,9 +29,10 @@ test("shouldResetInputText_WhenClickedCancel", () => {
 
 test("shouldResetInputTextOnSuccessfulSave", () => {
     const fn = jest.fn()
+
     render(<AddItem onSave={fn}/>)
 
-    fn.mockReturnValue(true)
+    fn.mockReturnValue("")
 
     const textInput = document.querySelector(".text-input")
     userEvent.type(textInput, "someText")
@@ -39,6 +40,7 @@ test("shouldResetInputTextOnSuccessfulSave", () => {
     const saveButton = screen.getByText("Add");
     userEvent.click(saveButton)
 
+    expect(fn).toBeCalledTimes(1)
     expect(textInput).toHaveValue("")
 })
 
