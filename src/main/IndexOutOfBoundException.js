@@ -1,5 +1,5 @@
 export default class IndexOutOfBoundException extends Error {
-    constructor(itemType) {
+    constructor() {
         super(`Index out of bound`);
     }
 }

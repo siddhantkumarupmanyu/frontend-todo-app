@@ -1,5 +1,6 @@
 import ObservableList from "../main/ObservableList";
 import IndexOutOfBoundException from "../main/IndexOutOfBoundException";
+import NoItemFoundException from "../main/NoItemFoundException";
 
 test("push", (done) => {
     const list = new ObservableList()
@@ -19,7 +20,7 @@ test("getList", () => {
     expect(innerList[0]).toEqual("item1")
 })
 
-test("insertAtIndex", (done) => {
+test("updateAt", (done) => {
     const list = new ObservableList()
     let count = 0
     list.addListener((newList) => {
@@ -34,7 +35,25 @@ test("insertAtIndex", (done) => {
 
     list.push("item0")
     list.push("item1")
-    list.insert("updatedItem", 1)
+    list.updateAt(1, "updatedItem")
+})
+
+test("updateItem", (done) => {
+    const list = new ObservableList()
+    let count = 0
+    list.addListener((newList) => {
+        if (count !== 2) {
+            count++
+            return
+        }
+        expect(newList[0]).toEqual("item0")
+        expect(newList[1]).toEqual("updatedItem")
+        done()
+    })
+
+    list.push("item0")
+    list.push("item1")
+    list.updateItem("item1", (item1, item2) => (item1 === item2), "updatedItem")
 })
 
 
@@ -83,4 +102,18 @@ test("removeAtThrowsIndexOutOfBoundException", () => {
     expect(() => list.removeAt(-1)).toThrow(IndexOutOfBoundException);
     expect(() => list.removeAt(0)).toThrow(IndexOutOfBoundException);
     expect(() => list.removeAt(1)).toThrow(IndexOutOfBoundException);
+})
+
+test("updateAtThrowsIndexOutOfBoundException", () => {
+    const list = new ObservableList()
+    expect(() => list.updateAt(-1, "")).toThrow(IndexOutOfBoundException);
+    expect(() => list.updateAt(0, "")).toThrow(IndexOutOfBoundException);
+    expect(() => list.updateAt(1, "")).toThrow(IndexOutOfBoundException);
+})
+
+test("throwsNoItemFound_WhenNoItemIsFound", () => {
+    const list = new ObservableList()
+    list.push("test")
+    expect(() => list.removeItem("item1", (item1, item2) => (item1 === item2))).toThrow(NoItemFoundException)
+    expect(() => list.updateItem("item1", (item1, item2) => (item1 === item2), "newItem")).toThrow(NoItemFoundException)
 })

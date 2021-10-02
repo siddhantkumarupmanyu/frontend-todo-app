@@ -41,6 +41,18 @@ test("deleteTodo", () => {
     expect((new TodoItem("note3", false, 2)).equals(database.getTodoItems().getList()[1])).toBe(false)
 })
 
+test("updateItemAfterDeletion", () => {
+    database.insertTodo(new TodoItem("note", false))
+    database.insertTodo(new TodoItem("note2", false))
+
+    database.deleteTodo(new TodoItem("note", false, 0))
+
+    const updatedItem = new TodoItem("note2", true, 1);
+    database.insertTodo(updatedItem)
+
+    expect(database.getTodoItems().getList()[0].equals(updatedItem)).toBe(true)
+})
+
 test("incorrectIdException", () => {
     expect(() => database.insertTodo(new TodoItem("note", true, 0))).toThrow(IncorrectIdException);
 

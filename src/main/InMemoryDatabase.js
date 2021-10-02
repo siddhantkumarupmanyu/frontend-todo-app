@@ -19,19 +19,14 @@ export class InMemoryDatabase extends Database {
     }
 
     insertTodo(todoItem) {
-        if (todoItem.getId() === TodoItem.NO_ID) {
-            this._insertNewItem(todoItem)
-        } else {
-            this._updateItem(todoItem)
+        if (todoItem.getId() !== TodoItem.NO_ID) {
+            throw IncorrectIdException()
         }
-    }
-
-    _insertNewItem(todoItem) {
         const todoItemWithId = new TodoItem(todoItem.getNote(), todoItem.isDone(), this._getId())
         this.#items.push(todoItemWithId)
     }
 
-    _updateItem(todoItem) {
+    updateItem(todoItem) {
         if ((todoItem.getId() >= this.#autoId) || (todoItem.getId() < -1)) {
             throw new IncorrectIdException()
         }
