@@ -65,7 +65,7 @@ test("removeItem", async (testController) => {
         .expect(item2Selector.exists).ok()
 
     await testController
-        .click(item2Selector.child(".delete"))
+        .click(item2Selector.child("span").withText("delete"))
 
     await testController
         .expect(item2Selector.exists).notOk()

@@ -1,6 +1,7 @@
 import {Checkbox, List, MaterialIconButton} from "../base_components/BaseComponents";
 import './TodoList.scss';
 
+// todo implement onDelete
 export function TodoList({todoItems, onItemClick}) {
 
     return (
