@@ -75,7 +75,7 @@ describe("singleItemAtATime", () => {
         items.push(new TodoItem("note5", false, 5))
 
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemsRemoved(6, "add", 5)
+        expectItemsWithClass(6, "add", 5)
 
         items.push(new TodoItem("note6", false, 6))
 
@@ -100,18 +100,18 @@ describe("singleItemAtATime", () => {
     })
 })
 
-// describe.skip("multipleItemsAtATime", () => {
-//     test("removeFromLast", () => {
-//         const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
-//         expect(document.querySelector(".remove")).not.toBeInTheDocument()
-//
-//         items.splice(4, 1)
-//         items.splice(2, 1)
-//
-//         rerender(<TodoList todoItems={Array.from(items)}/>)
-//         expectMultipleItemsRemoved(5, 4, 2);
-//     })
-// })
+describe("multipleItemsAtATime", () => {
+    test("removeFromLast", () => {
+        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
+        expect(document.querySelector(".remove")).not.toBeInTheDocument()
+
+        items.splice(4, 1)
+        items.splice(2, 1)
+
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectItemsRemoved(5, 4, 2);
+    })
+})
 
 
 function expectItemsRemoved(childrenCount, ...index) {
@@ -122,7 +122,7 @@ function expectItemsWithClass(childrenCount, className, ...index) {
     const listElement = document.querySelector("ul");
     expect(listElement.childElementCount).toEqual(childrenCount)
     for (let i = 0; i < childrenCount; i++) {
-        if (i === index[0]) {
+        if ((i === index[0]) || (i === index[1])) { // i will never do more than two item one time so YAGANI
             expect(listElement.children[i]).toHaveClass(className)
         } else {
             expect(listElement.children[i]).not.toHaveClass(className)
