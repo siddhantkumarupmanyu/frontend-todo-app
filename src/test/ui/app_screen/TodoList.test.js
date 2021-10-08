@@ -24,51 +24,55 @@ describe("singleItem", () => {
         items.splice(4, 1)
 
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(4);
+        expectItemRemoved(4, 4);
     })
 
-    test("removedFromFront", () => {
-        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
-        expect(document.querySelector(".remove")).not.toBeInTheDocument()
-
-        items.splice(0, 1)
-
-        rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(0);
-    })
-
-    test("removedFromBetween", () => {
-        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
-        expect(document.querySelector(".remove")).not.toBeInTheDocument()
-
-        items.splice(2, 1)
-
-        rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(2);
-    })
-
-    test("addedToLast", () => {
-        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
-        expect(document.querySelector(".add")).not.toBeInTheDocument()
-
-        items.push(new TodoItem("note5", false, 5))
-
-        rerender(<TodoList todoItems={Array.from(items)}/>)
-        expect(document.querySelector("ul").children[5]).toHaveClass("add")
-    })
+    // test("removedFromFront", () => {
+    //     const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
+    //     expect(document.querySelector(".remove")).not.toBeInTheDocument()
+    //
+    //     items.splice(0, 1)
+    //
+    //     rerender(<TodoList todoItems={Array.from(items)}/>)
+    //     expectItemRemoved(0, 4);
+    // })
+    //
+    // test("removedFromBetween", () => {
+    //     const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
+    //     expect(document.querySelector(".remove")).not.toBeInTheDocument()
+    //
+    //     items.splice(2, 1)
+    //
+    //     rerender(<TodoList todoItems={Array.from(items)}/>)
+    //     expectItemRemoved(2, 4);
+    // })
+    //
+    // test("addedToLast", () => {
+    //     const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
+    //     expect(document.querySelector(".add")).not.toBeInTheDocument()
+    //
+    //     items.push(new TodoItem("note5", false, 5))
+    //
+    //     rerender(<TodoList todoItems={Array.from(items)}/>)
+    //     expectOnlyItemWithClass(5, 5, "add")
+    //     // expect(document.querySelector("ul").children[5]).toHaveClass("add")
+    // })
 
 })
 
-describe.skip("multipleItems_MultipleTimes", () => {
+describe.skip("multipleTimes", () => {
 
-    test("removedFromLast", () => {
+    test("removeFromLast", () => {
         const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
         expect(document.querySelector(".remove")).not.toBeInTheDocument()
 
         items.splice(4, 1)
-
         rerender(<TodoList todoItems={Array.from(items)}/>)
         expectItemRemoved(4);
+
+        items.splice(3, 1)
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectItemRemoved(3, 4);
     })
 })
 
@@ -80,6 +84,16 @@ describe.skip("multipleItems", () => {
 //
 // })
 
-function expectItemRemoved(index) {
-    expect(document.querySelector("ul").children[index]).toHaveClass("remove")
+function expectItemRemoved(index, maxIndex) {
+    expectOnlyItemWithClass(index, maxIndex, "remove");
+}
+
+function expectOnlyItemWithClass(index, maxIndex, className) {
+    for (let i = 0; i <= maxIndex; i++) {
+        if (i === index) {
+            expect(document.querySelector("ul").children[i]).toHaveClass(className)
+        } else {
+            expect(document.querySelector("ul").children[i]).not.toHaveClass(className)
+        }
+    }
 }

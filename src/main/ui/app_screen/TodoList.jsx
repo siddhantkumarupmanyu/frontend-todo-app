@@ -64,7 +64,7 @@ function getTodoItemStatus(newItems, oldItems) {
 
     if (newItems.length < oldItems.length) { // removal
         for (let i = 0; i < oldItems.length; i++) {
-            if ((newItems[i] === undefined) || (!newItems[i].equals(oldItems[0]))) {
+            if ((newItems[i] === undefined) || (!newItems[i].equals(oldItems[i]))) {
                 status.set(i, "remove")
             }
         }
