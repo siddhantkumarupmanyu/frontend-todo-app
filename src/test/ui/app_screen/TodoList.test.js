@@ -77,6 +77,55 @@ describe("multipleTimes", () => {
         rerender(<TodoList todoItems={Array.from(items)}/>)
         expectItemRemoved(2, 3);
     })
+
+    test("removeFromFront", () => {
+        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
+        expect(document.querySelector(".remove")).not.toBeInTheDocument()
+
+        items.splice(0, 1)
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectItemRemoved(0, 5);
+
+        items.splice(1, 1)
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectItemRemoved(1, 4);
+
+        items.splice(2, 1)
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectItemRemoved(2, 3);
+    })
+
+    test("removeFromBetween", () => {
+        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
+        expect(document.querySelector(".remove")).not.toBeInTheDocument()
+
+        items.splice(3, 1)
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectItemRemoved(3, 5);
+
+        items.splice(2, 1)
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectItemRemoved(2, 4);
+
+        items.splice(1, 1)
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectItemRemoved(1, 3);
+    })
+
+    test("addToLast", () => {
+        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
+        expect(document.querySelector(".add")).not.toBeInTheDocument()
+
+        items.push(new TodoItem("note5", false, 5))
+
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectOnlyItemWithClass(5, 6, "add")
+
+        items.push(new TodoItem("note6", false, 6))
+
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectOnlyItemWithClass(6, 7, "add")
+    })
 })
 
 describe.skip("multipleItems", () => {
