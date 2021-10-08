@@ -8,6 +8,9 @@ export function AddItem({onSave}) {
     let [errorCssClasses, setErrorCssClasses] = useState("")
 
     function setFocusToInputAndResetInputText() {
+        // todo shouldn't i be using ref here
+        // its more react way of doing things
+        // https://reactjs.org/docs/hooks-reference.html#useref
         const input = document.querySelector(".add-item > .text-input")
         input.focus()
         setInputText("")
