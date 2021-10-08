@@ -23,15 +23,15 @@ describe("singleItemAtATime", () => {
 
         items.splice(4, 1)
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(4, 5);
+        expectItemsRemoved(5, 4);
 
         items.splice(3, 1)
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(3, 4);
+        expectItemsRemoved(4, 3);
 
         items.splice(2, 1)
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(2, 3);
+        expectItemsRemoved(3, 2);
     })
 
     test("removeFromFront", () => {
@@ -40,15 +40,15 @@ describe("singleItemAtATime", () => {
 
         items.splice(0, 1)
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(0, 5);
+        expectItemsRemoved(5, 0);
 
         items.splice(1, 1)
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(1, 4);
+        expectItemsRemoved(4, 1);
 
         items.splice(2, 1)
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(2, 3);
+        expectItemsRemoved(3, 2);
     })
 
     test("removeFromBetween", () => {
@@ -57,15 +57,15 @@ describe("singleItemAtATime", () => {
 
         items.splice(3, 1)
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(3, 5);
+        expectItemsRemoved(5, 3);
 
         items.splice(2, 1)
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(2, 4);
+        expectItemsRemoved(4, 2);
 
         items.splice(1, 1)
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(1, 3);
+        expectItemsRemoved(3, 1);
     })
 
     test("addToLast", () => {
@@ -75,12 +75,12 @@ describe("singleItemAtATime", () => {
         items.push(new TodoItem("note5", false, 5))
 
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectOnlyItemWithClass(5, 6, "add")
+        expectItemsRemoved(6, "add", 5)
 
         items.push(new TodoItem("note6", false, 6))
 
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectOnlyItemWithClass(6, 7, "add")
+        expectItemsWithClass(7, "add", 6)
     })
 
     test("addingThenRemoving", () => {
@@ -91,29 +91,38 @@ describe("singleItemAtATime", () => {
         items.push(new TodoItem("note5", false, 5))
 
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectOnlyItemWithClass(5, 6, "add")
+        expectItemsWithClass(6, "add", 5)
 
         items.splice(2, 1)
 
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(2, 6);
+        expectItemsRemoved(6, 2);
     })
 })
 
-describe.skip("multipleItems", () => {
+// describe.skip("multipleItemsAtATime", () => {
+//     test("removeFromLast", () => {
+//         const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
+//         expect(document.querySelector(".remove")).not.toBeInTheDocument()
+//
+//         items.splice(4, 1)
+//         items.splice(2, 1)
+//
+//         rerender(<TodoList todoItems={Array.from(items)}/>)
+//         expectMultipleItemsRemoved(5, 4, 2);
+//     })
+// })
 
-})
 
-
-function expectItemRemoved(index, childrenCount) {
-    expectOnlyItemWithClass(index, childrenCount, "remove");
+function expectItemsRemoved(childrenCount, ...index) {
+    expectItemsWithClass(childrenCount, "remove", ...index);
 }
 
-function expectOnlyItemWithClass(index, childrenCount, className) {
+function expectItemsWithClass(childrenCount, className, ...index) {
     const listElement = document.querySelector("ul");
     expect(listElement.childElementCount).toEqual(childrenCount)
     for (let i = 0; i < childrenCount; i++) {
-        if (i === index) {
+        if (i === index[0]) {
             expect(listElement.children[i]).toHaveClass(className)
         } else {
             expect(listElement.children[i]).not.toHaveClass(className)
