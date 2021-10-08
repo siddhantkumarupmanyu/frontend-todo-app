@@ -24,7 +24,7 @@ describe("singleItem", () => {
         items.splice(4, 1)
 
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(4, 4);
+        expectItemRemoved(4, 5);
     })
 
     test("removedFromFront", () => {
@@ -34,7 +34,7 @@ describe("singleItem", () => {
         items.splice(0, 1)
 
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(0, 4);
+        expectItemRemoved(0, 5);
     })
 
     test("removedFromBetween", () => {
@@ -44,7 +44,7 @@ describe("singleItem", () => {
         items.splice(2, 1)
 
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(2, 4);
+        expectItemRemoved(2, 5);
     })
 
     test("addedToLast", () => {
@@ -54,12 +54,12 @@ describe("singleItem", () => {
         items.push(new TodoItem("note5", false, 5))
 
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectOnlyItemWithClass(5, 5, "add")
+        expectOnlyItemWithClass(5, 6, "add")
     })
 
 })
 
-describe.skip("multipleTimes", () => {
+describe("multipleTimes", () => {
 
     test("removeFromLast", () => {
         const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
@@ -67,11 +67,15 @@ describe.skip("multipleTimes", () => {
 
         items.splice(4, 1)
         rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(4);
+        expectItemRemoved(4, 5);
 
         items.splice(3, 1)
         rerender(<TodoList todoItems={Array.from(items)}/>)
         expectItemRemoved(3, 4);
+
+        items.splice(2, 1)
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectItemRemoved(2, 3);
     })
 })
 
@@ -80,16 +84,18 @@ describe.skip("multipleItems", () => {
 })
 
 
-function expectItemRemoved(index, maxIndex) {
-    expectOnlyItemWithClass(index, maxIndex, "remove");
+function expectItemRemoved(index, childrenCount) {
+    expectOnlyItemWithClass(index, childrenCount, "remove");
 }
 
-function expectOnlyItemWithClass(index, maxIndex, className) {
-    for (let i = 0; i <= maxIndex; i++) {
+function expectOnlyItemWithClass(index, childrenCount, className) {
+    const listElement = document.querySelector("ul");
+    expect(listElement.childElementCount).toEqual(childrenCount)
+    for (let i = 0; i < childrenCount; i++) {
         if (i === index) {
-            expect(document.querySelector("ul").children[i]).toHaveClass(className)
+            expect(listElement.children[i]).toHaveClass(className)
         } else {
-            expect(document.querySelector("ul").children[i]).not.toHaveClass(className)
+            expect(listElement.children[i]).not.toHaveClass(className)
         }
     }
 }

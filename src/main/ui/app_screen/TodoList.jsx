@@ -17,6 +17,8 @@ export function TodoList({todoItems, onItemClick, onItemDelete}) {
 
     let mergedList = getMergedList(todoItems, items.current)
 
+    items.current = todoItems
+
     return (
         <div className="todo-list">
             <List
