@@ -15,51 +15,7 @@ beforeEach(() => {
     ]
 })
 
-describe("singleItem", () => {
-
-    test("removedFromLast", () => {
-        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
-        expect(document.querySelector(".remove")).not.toBeInTheDocument()
-
-        items.splice(4, 1)
-
-        rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(4, 5);
-    })
-
-    test("removedFromFront", () => {
-        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
-        expect(document.querySelector(".remove")).not.toBeInTheDocument()
-
-        items.splice(0, 1)
-
-        rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(0, 5);
-    })
-
-    test("removedFromBetween", () => {
-        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
-        expect(document.querySelector(".remove")).not.toBeInTheDocument()
-
-        items.splice(2, 1)
-
-        rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectItemRemoved(2, 5);
-    })
-
-    test("addedToLast", () => {
-        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
-        expect(document.querySelector(".add")).not.toBeInTheDocument()
-
-        items.push(new TodoItem("note5", false, 5))
-
-        rerender(<TodoList todoItems={Array.from(items)}/>)
-        expectOnlyItemWithClass(5, 6, "add")
-    })
-
-})
-
-describe("multipleTimes", () => {
+describe("singleItemAtATime", () => {
 
     test("removeFromLast", () => {
         const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
@@ -125,6 +81,22 @@ describe("multipleTimes", () => {
 
         rerender(<TodoList todoItems={Array.from(items)}/>)
         expectOnlyItemWithClass(6, 7, "add")
+    })
+
+    test("addingThenRemoving", () => {
+        const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
+        expect(document.querySelector(".add")).not.toBeInTheDocument()
+        expect(document.querySelector(".remove")).not.toBeInTheDocument()
+
+        items.push(new TodoItem("note5", false, 5))
+
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectOnlyItemWithClass(5, 6, "add")
+
+        items.splice(2, 1)
+
+        rerender(<TodoList todoItems={Array.from(items)}/>)
+        expectItemRemoved(2, 6);
     })
 })
 
