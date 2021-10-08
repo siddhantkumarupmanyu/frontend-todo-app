@@ -64,8 +64,12 @@ function getTodoItemStatus(newItems, oldItems) {
 
     if (newItems.length < oldItems.length) { // removal
         for (let i = 0; i < oldItems.length; i++) {
+            // if ((newItems[i] === undefined) || (!newItems[i].equals(oldItems[i]))) {
+            //     status.set(i, "remove")
+            // }
             if ((newItems[i] === undefined) || (!newItems[i].equals(oldItems[i]))) {
                 status.set(i, "remove")
+                break
             }
         }
     } else if (newItems.length > oldItems.length) { // addition
@@ -84,3 +88,7 @@ function getMergedList(newItems, oldItems) {
     }
     return merged
 }
+
+
+// todo: should try to create a array diff algorithm in some utils class
+//  - and calculate the time it takes
