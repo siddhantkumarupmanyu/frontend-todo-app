@@ -32,7 +32,6 @@ test("renderDiffedListItems", () => {
 
 
 // this is a learning test
-// here we are trying to learn both react ref hook as well as testing libraries hook testing
 function RefSpikeComponent({i}) {
 
     const iRef = useRef(i)
