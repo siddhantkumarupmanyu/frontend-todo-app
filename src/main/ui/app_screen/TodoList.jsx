@@ -64,14 +64,16 @@ function TodoListItem({todoItem, status, onCheck, onDelete,}) {
 function getTodoItemStatus(newItems, oldItems) {
     const status = new Map()
 
+    let removed = 0
+
     if (newItems.length < oldItems.length) { // removal
         for (let i = 0; i < oldItems.length; i++) {
             // if ((newItems[i] === undefined) || (!newItems[i].equals(oldItems[i]))) {
             //     status.set(i, "remove")
             // }
-            if ((newItems[i] === undefined) || (!newItems[i].equals(oldItems[i]))) {
+            if ((newItems[i] === undefined) || (!newItems[i].equals(oldItems[i + removed]))) {
                 status.set(i, "remove")
-                break
+                removed++
             }
         }
     } else if (newItems.length > oldItems.length) { // addition
@@ -93,4 +95,5 @@ function getMergedList(newItems, oldItems) {
 
 
 // todo: should try to create a array diff algorithm in some utils class
-//  - and calculate the time it takes
+//  - and calculate the time it take
+//  - so you are saying to parallelize it; makes sense
