@@ -1,6 +1,6 @@
 import {Checkbox, List, MaterialIconButton} from "../base_components/BaseComponents";
 import './TodoList.scss';
-import {useEffect, useRef, useState} from "react";
+import {useRef} from "react";
 
 export function TodoList({todoItems, onItemClick, onItemDelete}) {
 
@@ -60,40 +60,3 @@ function TodoListItem({todoItem, status, onCheck, onDelete,}) {
         </li>
     );
 }
-
-function getTodoItemStatus(newItems, oldItems) {
-    const status = new Map()
-
-    let removed = 0
-
-    if (newItems.length < oldItems.length) { // removal
-        for (let i = 0; i < oldItems.length; i++) {
-            // if ((newItems[i] === undefined) || (!newItems[i].equals(oldItems[i]))) {
-            //     status.set(i, "remove")
-            // }
-            if ((newItems[i] === undefined) || (!newItems[i].equals(oldItems[i + removed]))) {
-                status.set(i, "remove")
-                removed++
-            }
-        }
-    } else if (newItems.length > oldItems.length) { // addition
-        status.set(oldItems.length, "add")
-    }
-
-    return status
-}
-
-function getMergedList(newItems, oldItems) {
-    let merged = []
-    if (newItems.length < oldItems.length) { // removal
-        merged = Array.from(oldItems)
-    } else if (newItems.length > oldItems.length) { // addition
-        merged = Array.from(newItems)
-    }
-    return merged
-}
-
-
-// todo: should try to create a array diff algorithm in some utils class
-//  - and calculate the time it take
-//  - so you are saying to parallelize it; makes sense

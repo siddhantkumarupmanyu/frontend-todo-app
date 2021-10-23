@@ -1,5 +1,8 @@
 // every element in the list should be unique
 // this function does not take care of duplicate elements as this is meant to be used to elements with primary key
+// todo clean this code
+//  - and calculate the time it take
+//  - try parallelize it
 export function getListDiff(oldList, newList, equal) {
     const diffedList = []
 
