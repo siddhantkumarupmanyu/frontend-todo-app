@@ -1,6 +1,7 @@
 import {Checkbox, List, MaterialIconButton} from "../base_components/BaseComponents";
 import './TodoList.scss';
 import {useRef} from "react";
+import {getListDiff} from "../ui_utils/ListDiff";
 
 export function TodoList({todoItems, onItemClick, onItemDelete}) {
 
@@ -12,40 +13,46 @@ export function TodoList({todoItems, onItemClick, onItemDelete}) {
 
     // we can optimize this further with https://reactjs.org/docs/hooks-faq.html#how-to-memoize-calculations
 
+    // should I wrap todoItems(in useRef and item.current) with Array.from()
+    // since react and my structure gives me a little bit of trust
+    // i am gonna ignore it for now
     let items = useRef(todoItems)
-    let itemsStatus = getTodoItemStatus(todoItems, items.current)
 
-    let mergedList = getMergedList(todoItems, items.current)
+    const diffedList = getListDiff(items.current, todoItems, (item1, item2) => item1.equals(item2))
 
     items.current = todoItems
 
     return (
         <div className="todo-list">
             <List
-                items={mergedList}
+                items={diffedList}
                 ListItem={TodoListItem}
-                listItemProp={(todoItem, index) => ({
-                    key: todoItem.getId(),
-                    todoItem: todoItem,
-                    status: itemsStatus.get(index),
-                    onCheck: () => onItemClick(todoItem, index),
-                    onDelete: () => onItemDelete(todoItem, index)
+                listItemProp={(diffedListItem, index) => ({
+                    key: diffedListItem.item.getId(),
+                    diffedListItem: diffedListItem,
+                    onCheck: () => onItemClick(diffedListItem.item, index),
+                    onDelete: () => onItemDelete(diffedListItem.item, index)
                 })}
             />
         </div>
     )
 }
 
-function TodoListItem({todoItem, status, onCheck, onDelete,}) {
+function TodoListItem({diffedListItem, onCheck, onDelete,}) {
+
 
     let statusClasses = ""
-    if (status !== undefined) {
-        if (status === "remove") {
+    const diff = diffedListItem.diff;
+
+    if (diff !== undefined) {
+        if (diff === "remove") {
             statusClasses = "remove"
-        } else if (status === "add") {
+        } else if (diff === "add") {
             statusClasses = "add"
         }
     }
+
+    let todoItem = diffedListItem.item
 
     let strikeThrough = "none"
     if (todoItem.isDone()) {
