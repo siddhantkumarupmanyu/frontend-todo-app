@@ -8,7 +8,7 @@
 .todo-list > .list {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  //gap: 2px;
 }
 
 .todo-item {
@@ -22,8 +22,24 @@
   flex-direction: row;
   align-items: center;
   gap: 8px;
+
+  margin-bottom: 2px;
+
+  transition-property: all;
+  transition-duration: 1s;
+  opacity: 1;
 }
 
 .todo-item > .note-text {
   flex-grow: 1;
+}
+
+.add {
+  margin-bottom: -48px;
+  opacity: 0;
+}
+
+.remove {
+  margin-bottom: -48px;
+  opacity: 0;
 }
