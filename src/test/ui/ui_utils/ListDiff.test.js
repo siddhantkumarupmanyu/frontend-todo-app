@@ -5,7 +5,7 @@ test("itemsAddedInBetween", () => {
     const newList = [1, 2, 3, 7, 8, 4, 9, 5, 10, 6]
 
     const listWithDiff = getListDiff(oldList, newList, (p1, p2) => (p1 === p2))
-    
+
     expect(listWithDiff).toEqual([
         {item: 1, diff: ""},
         {item: 2, diff: ""},
@@ -113,5 +113,24 @@ test("everyOperationAtOnce", () => {
         {item: 12, diff: "add"},
         {item: 13, diff: "add"},
         {item: 14, diff: "add"},
+    ])
+})
+
+test("emptyList", () => {
+    const oldList = []
+    const newList = [0, 1, 2]
+
+    // when items are added
+    expect(getListDiff(oldList, newList, (p1, p2) => (p1 === p2))).toEqual([
+        {item: 0, diff: "add"},
+        {item: 1, diff: "add"},
+        {item: 2, diff: "add"}
+    ])
+
+    // when items are removed
+    expect(getListDiff(newList, oldList, (p1, p2) => (p1 === p2))).toEqual([
+        {item: 0, diff: "remove"},
+        {item: 1, diff: "remove"},
+        {item: 2, diff: "remove"}
     ])
 })
