@@ -1,6 +1,6 @@
-import {Checkbox, List, MaterialIconButton} from "../base_components/BaseComponents";
+import {Checkbox, MaterialIconButton} from "../base_components/BaseComponents";
+import {AnimatedList} from "../base_components/AnimatedList";
 import './TodoList.scss';
-import {Transition, TransitionGroup} from "react-transition-group";
 
 export function TodoList({todoItems, onItemClick, onItemDelete}) {
     return (
@@ -19,16 +19,6 @@ export function TodoList({todoItems, onItemClick, onItemDelete}) {
                     onDelete: () => onItemDelete(todoItem, index)
                 })}
             />
-            {/*<List*/}
-            {/*    items={todoItems}*/}
-            {/*    ListItem={TodoListItem}*/}
-            {/*    listItemProp={(todoItem, index) => ({*/}
-            {/*        key: todoItem.getId(),*/}
-            {/*        item: todoItem,*/}
-            {/*        onCheck: () => onItemClick(todoItem, index),*/}
-            {/*        onDelete: () => onItemDelete(todoItem, index)*/}
-            {/*    })}*/}
-            {/*/>*/}
         </div>
     )
 }
@@ -38,6 +28,7 @@ function TodoListItem({item, onCheck, onDelete, state}) {
     if (item.isDone()) {
         strikeThrough = "line-through"
     }
+    // todo rename it to todo-item-${state}
     return (
         <li className={`todo-item ${state}`}>
             <span className="note-text" style={{textDecoration: strikeThrough}}>{item.getNote()}</span>
@@ -45,25 +36,4 @@ function TodoListItem({item, onCheck, onDelete, state}) {
             <MaterialIconButton iconName="delete" onClick={onDelete}/>
         </li>
     );
-}
-
-// todo: check if other way is also possible that is,
-//  using component={List} in TransitionGroup
-function AnimatedList({items, timeout, ListItem, listItemKey, listItemProp}) {
-
-    // todo: change class name to animated-list
-    return (
-        <ul className="list">
-            <TransitionGroup component={null}>{
-                items.map((item, index) => (
-                    <Transition key={listItemKey(item, index)} timeout={timeout}>{(state) => (
-                        <ListItem
-                            state={state}
-                            {...listItemProp(item, index)}
-                        />
-                    )}</Transition>
-                ))
-            }</TransitionGroup>
-        </ul>
-    )
 }
