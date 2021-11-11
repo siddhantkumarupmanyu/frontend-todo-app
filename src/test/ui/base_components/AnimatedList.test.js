@@ -1,4 +1,3 @@
-import React from "react";
 import {render, screen} from "@testing-library/react";
 import {config} from "react-transition-group";
 import {AnimatedList} from "../../../main/ui/base_components/AnimatedList";
@@ -50,10 +49,8 @@ test("shouldBeAbleToAddAndRemoveItems", () => {
     expect(screen.getByText("5 at 4")).toBeInTheDocument()
 })
 
-const TestListItem = React.forwardRef((props, ref) => {
-    const {item, index} = props
-
+function TestListItem({item, index}) {
     return (
-        <span ref={ref}>{item} at {index}</span>
+        <span>{item} at {index}</span>
     )
-})
+}
