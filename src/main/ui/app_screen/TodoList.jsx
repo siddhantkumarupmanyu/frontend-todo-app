@@ -1,3 +1,4 @@
+import React from "react";
 import {Checkbox, MaterialIconButton} from "../base_components/BaseComponents";
 import {AnimatedList} from "../base_components/AnimatedList";
 import './TodoList.scss';
@@ -23,16 +24,18 @@ export function TodoList({todoItems, onItemClick, onItemDelete}) {
     )
 }
 
-function TodoListItem({item, onCheck, onDelete, state}) {
+const TodoListItem = React.forwardRef((props, ref) => {
+    const {item, onCheck, onDelete, state} = props
+    
     let strikeThrough = "none"
     if (item.isDone()) {
         strikeThrough = "line-through"
     }
     return (
-        <li className={`todo-item todo-item-${state}`}>
+        <li ref={ref} className={`todo-item todo-item-${state}`}>
             <span className="note-text" style={{textDecoration: strikeThrough}}>{item.getNote()}</span>
             <Checkbox isChecked={item.isDone()} onClick={onCheck}/>
             <MaterialIconButton iconName="delete" onClick={onDelete}/>
         </li>
     );
-}
+})
