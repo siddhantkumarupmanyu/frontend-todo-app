@@ -1,19 +1,43 @@
 import {Checkbox, List, MaterialIconButton} from "../base_components/BaseComponents";
 import './TodoList.scss';
+import {Transition, TransitionGroup} from "react-transition-group";
 
 export function TodoList({todoItems, onItemClick, onItemDelete}) {
+
+    // todo: check other way is also possible that is,
+    //  using component={List} in TransitionGroup
+
     return (
         <div className="todo-list">
-            <List
-                items={todoItems}
-                ListItem={TodoListItem}
-                listItemProp={(todoItem, index) => ({
-                    key: todoItem.getId(),
-                    item: todoItem,
-                    onCheck: () => onItemClick(todoItem, index),
-                    onDelete: () => onItemDelete(todoItem, index)
-                })}
-            />
+            <ul className="list">
+                {/*<TransitionGroup component={null}>*/}
+                {/*    {*/}
+                {/*        todoItems.map((item, index) => (*/}
+                {/*            <Transition key={item.getId()} timeout={0}>*/}
+                {/*                {(state) => (*/}
+                {/*                    <TodoListItem item={item}/>*/}
+                {/*                )*/}
+                {/*                }*/}
+                {/*            </Transition>*/}
+                {/*        ))*/}
+                {/*    }*/}
+                {/*</TransitionGroup>*/}
+                {
+                    todoItems.map((item, index) => (
+                        <TodoListItem key={item.getId()} item={item}/>
+                    ))
+                }
+            </ul>
+            {/*<List*/}
+            {/*    items={todoItems}*/}
+            {/*    ListItem={TodoListItem}*/}
+            {/*    listItemProp={(todoItem, index) => ({*/}
+            {/*        key: todoItem.getId(),*/}
+            {/*        item: todoItem,*/}
+            {/*        onCheck: () => onItemClick(todoItem, index),*/}
+            {/*        onDelete: () => onItemDelete(todoItem, index)*/}
+            {/*    })}*/}
+            {/*/>*/}
         </div>
     )
 }

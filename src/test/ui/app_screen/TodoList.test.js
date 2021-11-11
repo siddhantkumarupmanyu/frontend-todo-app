@@ -16,11 +16,27 @@ beforeEach(() => {
     ]
 })
 
-test("transitionGroup", () => {
+test("itemsAreRendered", () => {
     const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
 
     expect(screen.getByText("note2")).toBeInTheDocument()
     expect(screen.getByText("note4")).toBeInTheDocument()
+
+    items.splice(2, 1)
+    items.push(new TodoItem("note5", false, 5))
+
+    rerender(<TodoList todoItems={Array.from(items)}/>)
+
+    expect(screen.queryByText("note2")).not.toBeInTheDocument()
+    expect(screen.getByText("note5")).toBeInTheDocument()
+})
+
+test.skip("onItemClick", () => {
+
+})
+
+test.skip("onItemDelete", () => {
+
 })
 
 // test("renderDiffedListItems", () => {
