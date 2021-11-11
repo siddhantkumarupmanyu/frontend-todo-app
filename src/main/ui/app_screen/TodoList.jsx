@@ -11,14 +11,19 @@ export function TodoList({todoItems, onItemClick, onItemDelete}) {
         <div className="todo-list">
             <ul className="list">
                 <TransitionGroup component={null}>
-                    {
+                    { // todo: clean this code, apply SRP
                         todoItems.map((item, index) => (
                             <Transition key={item.getId()} timeout={{
                                 enter: 0,
                                 exit: 1000,
                             }}>
                                 {(state) => (
-                                    <TodoListItem item={item} state={state}/>
+                                    <TodoListItem
+                                        item={item}
+                                        state={state}
+                                        onCheck={() => onItemClick(item, index)}
+                                        onDelete={() => onItemDelete(item, index)}
+                                    />
                                 )
                                 }
                             </Transition>

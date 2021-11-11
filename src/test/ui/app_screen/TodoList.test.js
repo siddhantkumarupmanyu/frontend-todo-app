@@ -4,6 +4,7 @@ import TodoItem from "../../../main/vo/TodoItem";
 import {useRef} from "react";
 
 import {config} from 'react-transition-group';
+import userEvent from "@testing-library/user-event";
 
 let items = [];
 
@@ -16,13 +17,13 @@ beforeEach(() => {
     items = [
         new TodoItem("note0", false, 0),
         new TodoItem("note1", false, 1),
-        new TodoItem("note2", false, 2),
+        new TodoItem("note2", true, 2),
         new TodoItem("note3", false, 3),
-        new TodoItem("note4", false, 4),
+        new TodoItem("note4", true, 4),
     ]
 })
 
-test("itemsAreRendered", () => {
+test("shouldBeAbleToAddAndRemoveItems", () => {
     const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
 
     expect(screen.getByText("note2")).toBeInTheDocument()
@@ -37,12 +38,40 @@ test("itemsAreRendered", () => {
     expect(screen.getByText("note5")).toBeInTheDocument()
 })
 
-test.skip("onItemClick", () => {
+test("shouldRenderStrikeThroughElement", () => {
+    render(<TodoList todoItems={Array.from(items)}/>)
 
+    expect(screen.getByText("note2")).toHaveStyle("text-decoration: line-through")
+    expect(screen.getByText("note4")).toHaveStyle("text-decoration: line-through")
 })
 
-test.skip("onItemDelete", () => {
+// bit ambiguous, it should be itemChecked
+test("onItemClick", () => {
+    const fn = jest.fn()
 
+    render(<TodoList todoItems={Array.from(items)} onItemClick={fn}/>)
+    const note1CheckBox = screen.getByText("note1").nextElementSibling
+    userEvent.click(note1CheckBox)
+
+    const item1 = new TodoItem("note1", false, 1)
+
+    expect(fn).toBeCalledTimes(1)
+    // am not sure how to test equality of first param. right now, it passes no matter what
+    expect(fn).toBeCalledWith(item1, 1)
+})
+
+test("onItemDelete", () => {
+    const fn = jest.fn()
+
+    render(<TodoList todoItems={Array.from(items)} onItemDelete={fn}/>)
+    const note1Delete = screen.getByText("note1").nextElementSibling.nextElementSibling
+    userEvent.click(note1Delete)
+
+    const item1 = new TodoItem("note1", false, 1)
+
+    expect(fn).toBeCalledTimes(1)
+    // am not sure how to test equality of first param. right now, it passes no matter what
+    expect(fn).toBeCalledWith(item1, 1)
 })
 
 // this is a learning test
