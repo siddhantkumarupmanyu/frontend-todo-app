@@ -18,7 +18,6 @@ export default function App({appViewModel}) {
     useEffect(() => {
 
         appViewModel.getObservableItems().addListener((newList) => {
-            // because react needs f*cking Immutability
             setItems(Array.from(newList).reverse())
         })
     }, [appViewModel])

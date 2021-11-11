@@ -12,6 +12,8 @@ beforeEach(() => {
     Database.mockClear();
 })
 
+// TODO: should create test fixtures
+//  - to much code is getting duplicated in tests
 
 // I do not know, where should the responsibility of creating of TodoItem go?
 //  - in viewModel or in App.js or in AddItem.js

@@ -6,8 +6,7 @@ import AppViewModel from "./main/ui/app_screen/AppViewModel";
 import {InMemoryDatabase} from "./main/InMemoryDatabase";
 
 
-// TODO: remove unnecessary create react app files
-//  - use local storage instead of InMemory database
+// TODO: use local storage instead of InMemory database
 
 // this can be thought of as a entry point
 

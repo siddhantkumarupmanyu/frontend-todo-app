@@ -5,13 +5,14 @@
 }
 
 // name of the css class is same as that of the component
-.todo-list > .list {
+.todo-list > .animated-list {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  //gap: 2px;
 }
 
 .todo-item {
+  background: white;
   height: 48px;
   border: solid 2px rgba(var(--rgb-onSurface), 0.12);
   border-radius: 8px;
@@ -22,8 +23,37 @@
   flex-direction: row;
   align-items: center;
   gap: 8px;
+
+  margin-bottom: 2px;
+
+  transition-property: margin-bottom, opacity;
+  transition-duration: 1s;
+  opacity: 1;
 }
 
 .todo-item > .note-text {
   flex-grow: 1;
+}
+
+.todo-item-entering {
+  margin-bottom: -48px;
+  opacity: 0;
+  z-index: -100;
+}
+
+.todo-item-entered {
+  margin-bottom: 2px;
+  opacity: 1;
+  z-index: 0;
+}
+
+.todo-item-exiting {
+  margin-bottom: -48px;
+  opacity: 0;
+  z-index: -100;
+}
+
+/* no use */
+.todo-item-exited {
+  opacity: 0;
 }
