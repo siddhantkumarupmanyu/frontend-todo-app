@@ -35,25 +35,25 @@
   flex-grow: 1;
 }
 
-.entering {
+.todo-item-entering {
   margin-bottom: -48px;
   opacity: 0;
   z-index: -100;
 }
 
-.entered {
+.todo-item-entered {
   margin-bottom: 2px;
   opacity: 1;
   z-index: 0;
 }
 
-.exiting {
+.todo-item-exiting {
   margin-bottom: -48px;
   opacity: 0;
   z-index: -100;
 }
 
 /* no use */
-.exited {
+.todo-item-exited {
   opacity: 0;
 }

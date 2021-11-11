@@ -28,9 +28,8 @@ function TodoListItem({item, onCheck, onDelete, state}) {
     if (item.isDone()) {
         strikeThrough = "line-through"
     }
-    // todo rename it to todo-item-${state}
     return (
-        <li className={`todo-item ${state}`}>
+        <li className={`todo-item todo-item-${state}`}>
             <span className="note-text" style={{textDecoration: strikeThrough}}>{item.getNote()}</span>
             <Checkbox isChecked={item.isDone()} onClick={onCheck}/>
             <MaterialIconButton iconName="delete" onClick={onDelete}/>
