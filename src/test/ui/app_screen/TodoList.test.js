@@ -16,19 +16,26 @@ beforeEach(() => {
     ]
 })
 
-test("renderDiffedListItems", () => {
-
-    // since array should not mutate else useRef.current will mutate too
+test("transitionGroup", () => {
     const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
 
-    items.splice(2, 1)
-    items.push(new TodoItem("note5", false, 5))
-
-    rerender(<TodoList todoItems={Array.from(items)}/>)
-
-    expect(screen.getByText("note2").parentElement).toHaveClass("remove")
-    expect(screen.getByText("note5").parentElement).toHaveClass("add")
+    expect(screen.getByText("note2")).toBeInTheDocument()
+    expect(screen.getByText("note4")).toBeInTheDocument()
 })
+
+// test("renderDiffedListItems", () => {
+//
+//     // since array should not mutate else useRef.current will mutate too
+//     const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
+//
+//     items.splice(2, 1)
+//     items.push(new TodoItem("note5", false, 5))
+//
+//     rerender(<TodoList todoItems={Array.from(items)}/>)
+//
+//     expect(screen.getByText("note2").parentElement).toHaveClass("remove")
+//     expect(screen.getByText("note5").parentElement).toHaveClass("add")
+// })
 
 
 // this is a learning test
