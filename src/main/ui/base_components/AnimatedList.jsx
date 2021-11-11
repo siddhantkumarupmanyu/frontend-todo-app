@@ -7,21 +7,12 @@ import './AnimatedList.scss'
  * this list does not support divider yet.
  */
 export function AnimatedList({items, timeout, ListItem, listItemKey, listItemProp}) {
-
-    // https://stackoverflow.com/a/56063129
-    const itemRefs = useRef([])
-
-    useEffect(() => {
-        itemRefs.current = itemRefs.current.slice(0, items.length)
-    }, [items])
-
     return (
         <ul className="animated-list">
             <TransitionGroup component={null}>{
                 items.map((item, index) => (
                     <Transition key={listItemKey(item, index)} timeout={timeout}>{(state) => (
                         <ListItem
-                            ref={el => itemRefs.current[index] = el}
                             state={state}
                             {...listItemProp(item, index)}
                         />
