@@ -12,6 +12,7 @@
 }
 
 .todo-item {
+  background: white;
   height: 48px;
   border: solid 2px rgba(var(--rgb-onSurface), 0.12);
   border-radius: 8px;
@@ -25,7 +26,7 @@
 
   margin-bottom: 2px;
 
-  transition-property: all;
+  transition-property: margin-bottom, opacity;
   transition-duration: 1s;
   opacity: 1;
 }
@@ -34,12 +35,25 @@
   flex-grow: 1;
 }
 
-.add {
+.entering {
   margin-bottom: -48px;
   opacity: 0;
+  z-index: -100;
 }
 
-.remove {
+.entered {
+  margin-bottom: 2px;
+  opacity: 1;
+  z-index: 0;
+}
+
+.exiting {
   margin-bottom: -48px;
+  opacity: 0;
+  z-index: -100;
+}
+
+/* no use */
+.exited {
   opacity: 0;
 }

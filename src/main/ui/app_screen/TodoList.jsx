@@ -10,23 +10,21 @@ export function TodoList({todoItems, onItemClick, onItemDelete}) {
     return (
         <div className="todo-list">
             <ul className="list">
-                {/*<TransitionGroup component={null}>*/}
-                {/*    {*/}
-                {/*        todoItems.map((item, index) => (*/}
-                {/*            <Transition key={item.getId()} timeout={0}>*/}
-                {/*                {(state) => (*/}
-                {/*                    <TodoListItem item={item}/>*/}
-                {/*                )*/}
-                {/*                }*/}
-                {/*            </Transition>*/}
-                {/*        ))*/}
-                {/*    }*/}
-                {/*</TransitionGroup>*/}
-                {
-                    todoItems.map((item, index) => (
-                        <TodoListItem key={item.getId()} item={item}/>
-                    ))
-                }
+                <TransitionGroup component={null}>
+                    {
+                        todoItems.map((item, index) => (
+                            <Transition key={item.getId()} timeout={{
+                                enter: 0,
+                                exit: 1000,
+                            }}>
+                                {(state) => (
+                                    <TodoListItem item={item} state={state}/>
+                                )
+                                }
+                            </Transition>
+                        ))
+                    }
+                </TransitionGroup>
             </ul>
             {/*<List*/}
             {/*    items={todoItems}*/}
@@ -42,13 +40,13 @@ export function TodoList({todoItems, onItemClick, onItemDelete}) {
     )
 }
 
-function TodoListItem({item, onCheck, onDelete}) {
+function TodoListItem({item, onCheck, onDelete, state}) {
     let strikeThrough = "none"
     if (item.isDone()) {
         strikeThrough = "line-through"
     }
     return (
-        <li className="todo-item">
+        <li className={`todo-item ${state}`}>
             <span className="note-text" style={{textDecoration: strikeThrough}}>{item.getNote()}</span>
             <Checkbox isChecked={item.isDone()} onClick={onCheck}/>
             <MaterialIconButton iconName="delete" onClick={onDelete}/>

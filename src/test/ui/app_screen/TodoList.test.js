@@ -3,8 +3,14 @@ import {TodoList} from "../../../main/ui/app_screen/TodoList";
 import TodoItem from "../../../main/vo/TodoItem";
 import {useRef} from "react";
 
+import {config} from 'react-transition-group';
 
 let items = [];
+
+beforeAll(() => {
+    // https://reactcommunity.org/react-transition-group/testing
+    config.disabled = true
+})
 
 beforeEach(() => {
     items = [
@@ -38,21 +44,6 @@ test.skip("onItemClick", () => {
 test.skip("onItemDelete", () => {
 
 })
-
-// test("renderDiffedListItems", () => {
-//
-//     // since array should not mutate else useRef.current will mutate too
-//     const {rerender} = render(<TodoList todoItems={Array.from(items)}/>)
-//
-//     items.splice(2, 1)
-//     items.push(new TodoItem("note5", false, 5))
-//
-//     rerender(<TodoList todoItems={Array.from(items)}/>)
-//
-//     expect(screen.getByText("note2").parentElement).toHaveClass("remove")
-//     expect(screen.getByText("note5").parentElement).toHaveClass("add")
-// })
-
 
 // this is a learning test
 function RefSpikeComponent({i}) {
