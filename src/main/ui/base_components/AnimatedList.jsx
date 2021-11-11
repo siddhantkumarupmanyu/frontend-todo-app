@@ -11,12 +11,18 @@ export function AnimatedList({items, timeout, ListItem, listItemKey, listItemPro
         <ul className="animated-list">
             <TransitionGroup component={null}>{
                 items.map((item, index) => (
-                    <Transition key={listItemKey(item, index)} timeout={timeout}>{(state) => (
-                        <ListItem
-                            state={state}
-                            {...listItemProp(item, index)}
-                        />
-                    )}</Transition>
+                    <Transition
+                        key={listItemKey(item, index)}
+                        timeout={timeout}>
+                        {
+                            (state) => (
+                                <ListItem
+                                    state={state}
+                                    {...listItemProp(item, index)}
+                                />
+                            )
+                        }
+                    </Transition>
                 ))
             }</TransitionGroup>
         </ul>
